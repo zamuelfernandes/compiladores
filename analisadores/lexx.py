@@ -33,6 +33,8 @@ tokens = [
     # Identificadores
     'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL',
 
+    # ignore
+    'IGNORE'
 
 
     # Tokens malformados
@@ -70,6 +72,9 @@ t_ABREPARENTESE = r'\('
 t_FECHAPARENTESE = r'\)'
 t_INICIOBLOCO = r'\{'
 t_FIMBLOCO = r'\}'
+
+# Ignorar espaços em branco e tabulações
+t_IGNORE = ' \t'
 
 # Regras de expressão regular (RegEx) para tokens mais "complexos"
 def t_VARIAVEL(t):

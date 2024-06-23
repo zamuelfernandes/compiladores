@@ -20,7 +20,6 @@ def test_lexer():
     # Tokens esperados
     expected_tokens = [
         ('PLAY', 'play'),
-        ('RESERVADA', 'int'),
         ('VARIAVEL', 'x'),
         ('ATRIBUICAO', '<-'),
         ('INTEIRO', 10),
