@@ -34,8 +34,9 @@ tokens = [
     'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL',
 
     # ignore
-    'ignore'
+    'ignore',
 
+    'FINALLINHA'
 
     # Tokens malformados
     'variavel_mf', 'numero_mf', 'string_mf'
@@ -111,6 +112,16 @@ def t_numero_mf(t):
     r'([0-9]+\.[a-z]+[0-9]+)|([0-9]+\.[a-z]+)|([0-9]+\.[0-9]+[a-z]+)'
     print(f"Número malformado: {t.value}")
     return t
+
+#Defina uma regra para que seja possível rastrear o números de linha
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+def t_FINALLINHA(t):
+    r'\''
+    return t
+    t.lexer.lineno += len(t.value)
 
 # Regra de tratamento de erros
 erroslexicos = []
