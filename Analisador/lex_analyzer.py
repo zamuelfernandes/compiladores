@@ -115,8 +115,8 @@ def t_newline(t):
 
 def t_FINALLINHA(t):
     r'\''
-    return t
     t.lexer.lineno += len(t.value)
+    return t
 
 # Regra de tratamento de erros
 erroslexicos = []

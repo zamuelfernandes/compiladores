@@ -4,28 +4,76 @@ import ply.yacc as yacc
 from lex_analyzer import lexer
 from sint_analyzer import parser
 
-# Teste do analisador léxico
-if __name__ == "__main__":
-    data = '''
-    play 
-    int x <- 10;
-    real y <- 5.5;
-    char c <- 'a';
-    if (x > y) {
-        write x;
+# Exemplo 1: Comandos de Entrada e Saída
+example1 = '''
+play
+    int x;
+    int y;
+    read(x);
+    read(y);
+    write(x + y);
+close
+'''
+
+# Exemplo 2: Comandos Condicionais
+example2 = '''
+play
+    int a;
+    int b;
+    int max;
+    read(a);
+    read(b);
+    if (a > b) {
+        max <- a;
     } else {
-        write y;
+        max <- b;
     }
-    close
-    '''
-    
+    write(max);
+close
+'''
+
+# Exemplo 3: Comandos de Repetição
+example3 = '''
+play
+    int i;
+    int sum;
+    sum <- 0;
+    i <- 1;
+    while (i <= 10) {
+        sum <- sum + i;
+        i <- i + 1;
+    }
+    write(sum);
+close
+'''
+
+# Função para testar um exemplo
+def test_example(data):
     lexer.input(data)
-    
+
     while True:
         tok = lexer.token()
         if not tok:
             break
         print(tok)
+
+
+# Teste do analisador léxico
+if __name__ == "__main__":
+
+    example = example3 #trocar aqui
+
+    # print("Exemplo 1: Comandos de Entrada e Saída")
+    # test_example(example)
+    # print("\n")
+
+    # print("Exemplo 2: Comandos Condicionais")
+    # test_example(example)
+    # print("\n")
+
+    print("Exemplo 3: Comandos de Repetição")
+    test_example(example)
+    print("\n")
     
-    result = parser.parse(data)
+    result = parser.parse(example)
     print("Análise concluída!")
