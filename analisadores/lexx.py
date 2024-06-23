@@ -19,7 +19,7 @@ tokens = [
     'VIRGULA', 'PONTO',
 
     # Operadores de Impressão 
-    'ASPAS', 'COMENTARIO', 'FINALLINHA',
+    'ASPAS', 'COMENTARIO', 
 
     # Operadores de Atribuição 
     'ATRIBUICAO',
@@ -32,11 +32,6 @@ tokens = [
    
     # Identificadores
     'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL',
-
-    # ignore
-    'ignore',
-
-    'FINALLINHA'
 
     # Tokens malformados
     'variavel_mf', 'numero_mf', 'string_mf'
@@ -74,7 +69,6 @@ t_FECHAPARENTESE = r'\)'
 t_INICIOBLOCO = r'\{'
 t_FIMBLOCO = r'\}'
 
-# Ignorar espaços em branco e tabulações
 t_ignore = ' \t'
 
 # Regras de expressão regular (RegEx) para tokens mais "complexos"
