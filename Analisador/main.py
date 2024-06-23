@@ -13,9 +13,9 @@ lexer = lex.lex()
 # Teste do analisador léxico
 if __name__ == "__main__":
     data = '''
-    play int x = 10;
-    real y = 5.5;
-    char c = 'a';
+    play int x <- 10;
+    real y <- 5.5;
+    char c <- 'a';
     if (x > y) {
         write x;
     } else {
@@ -33,4 +33,4 @@ if __name__ == "__main__":
         print(tok)
     
     # result = parser.parse(data)
-    # print("Análise concluída!")
+    print("Análise concluída!")
