@@ -34,7 +34,7 @@ tokens = [
     'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL',
 
     # ignore
-    'IGNORE'
+    'ignore'
 
 
     # Tokens malformados
@@ -74,7 +74,7 @@ t_INICIOBLOCO = r'\{'
 t_FIMBLOCO = r'\}'
 
 # Ignorar espaços em branco e tabulações
-t_IGNORE = ' \t'
+t_ignore = ' \t'
 
 # Regras de expressão regular (RegEx) para tokens mais "complexos"
 def t_VARIAVEL(t):

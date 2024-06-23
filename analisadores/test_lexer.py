@@ -20,11 +20,11 @@ def test_lexer():
     # Tokens esperados
     expected_tokens = [
         ('PLAY', 'play'),
+        ('RESERVADA', 'int'),
         ('VARIAVEL', 'x'),
         ('ATRIBUICAO', '<-'),
         ('INTEIRO', 10),
         ('PONTOVIRGULA', ';'),
-        ('RESERVADA', 'real'),
         ('VARIAVEL', 'y'),
         ('ATRIBUICAO', '<-'),
         ('REAL', 5.5),
@@ -59,7 +59,7 @@ def test_lexer():
         tok = lexer.token()
         assert tok is not None, f"Expected token {expected_token} but got None"
         assert (tok.type, tok.value) == expected_token, f"Expected {expected_token} but got ({tok.type}, {tok.value})"
-
+    
     print("Todos os testes passaram!")
 
 if __name__ == "__main__":
