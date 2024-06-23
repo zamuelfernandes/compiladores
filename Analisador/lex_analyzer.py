@@ -7,7 +7,7 @@ reserved = {
     'write': 'SAIDA',
     'while': 'REPETICAO',
     'if': 'CASO',
-    'else': 'CASOCONTRARIO'
+    'else': 'CASOCONTRARIO',
 }
 
 # lista dos tokens
@@ -31,7 +31,7 @@ tokens = [
     'ABREPARENTESE', 'FECHAPARENTESE', 'INICIOBLOCO', 'FIMBLOCO',
    
     # Identificadores
-    'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL',
+    'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL', 'RESERVADA',
 
     # Tokens malformados
     'variavel_mf', 'numero_mf', 'string_mf'
@@ -47,7 +47,7 @@ t_RESTO = r'%'
 t_DOISPONTOS = r':'
 t_PONTOVIRGULA = r';'
 t_VIRGULA = r','
-t_PONTO = r'\.'
+t_PONTO = r'.'
 
 t_ASPAS = r'\"'
 t_COMENTARIO = r'\#.*'
@@ -125,3 +125,6 @@ def t_error(t):
     print(f"Caractere ilegal '{t.value[0]}'")
     erroslexicos.append(t)
     t.lexer.skip(1)
+
+# Constrói o lexer
+lexer = lex.lex()
