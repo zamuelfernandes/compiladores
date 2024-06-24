@@ -1,11 +1,8 @@
-import ply.lex as lex 
-import ply.yacc as yacc
+from lex_analyzer import*
+from sint_analyzer import*
 
-from lex_analyzer import lexer
-from sint_analyzer import parser
-
-# Exemplo 1: Comandos de Entrada e Saída
-example1 = '''play
+# Exemplo 1: Teste dos Comandos de Entrada e Saída
+exampleIO = '''play
     int x;
     int y;
     read(x);
@@ -13,8 +10,8 @@ example1 = '''play
     write(x + y);
 close'''
 
-# Exemplo 2: Comandos Condicionais
-example2 = '''play
+# Exemplo 2: Teste dos Comandos Condicionais
+exampleCond = '''play
     int a;
     int b;
     int max;
@@ -28,8 +25,8 @@ example2 = '''play
     write(max);
 close'''
 
-# Exemplo 3: Comandos de Repetição
-example3 = '''play
+# Exemplo 3: Teste dos Comandos de Repetição
+exampleRepeat = '''play
     int i;
     int sum;
     sum <- 0;
@@ -41,11 +38,14 @@ example3 = '''play
     write(sum);
 close'''
 
-testeCont = '''int x;
+#Exemplo 4: Testes Genéricos
+exampleErro = '''play
+    int x;
     x = 10;
     if (x > 5) {
         x = x + 1;
-    }'''
+    }
+close'''
 
 # Função para testar um exemplo léxico
 def test_example(data):
@@ -55,31 +55,55 @@ def test_example(data):
         tok = lexer.token()
         if not tok:
             break
+        if tok.type == 'error':
+            continue
         print(f"Token: {tok.type}, Valor: {tok.value}, Linha: {tok.lineno}")
 
-# Função para formatar e imprimir o resultado de maneira legível
-def format_result(result, indent=0):
-    indent_str = '  ' * indent
-    if isinstance(result, tuple):
-        print(f"{indent_str}{result[0]}:")
-        for item in result[1:]:
-            format_result(item, indent + 1)
-    elif isinstance(result, list):
-        for item in result:
-            format_result(item, indent)
-    else:
-        print(f"{indent_str}{result}")
+# Gerar arquivo do reconhecimento de análise léxica
+def gerar_reconhecimento_lexico(data):
+    lexer.input(data)
+    tokens_reconhecidos = []
 
-# Teste dos analisadores
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        tokens_reconhecidos.append(f"Token: {tok.type} | Valor: '{tok.value}' | Linha: {tok.lineno}")
+
+    return tokens_reconhecidos
+
+# Gerar arquivo do reconhecimento de análise sintática
+def gerar_reconhecimento_sintatico(data):
+    lexer.lineno = 1
+    result = parser.parse(data)
+    print(result)
+    return result
+        
+# Fazer reconhecimento
+def gerar_arquivo_reconhecimento(data):
+    tokens_reconhecidos = gerar_reconhecimento_lexico(data)
+    gerar_reconhecimento_sintatico(data)
+
+    with open("reconhecimento_comandos.txt", "w", encoding="utf-8") as f:
+        f.write("Reconhecimento Léxico:\n")
+        for item in tokens_reconhecidos:
+            f.write(f"{item}\n")
+        
+        f.write("\nReconhecimento Sintático:\n")
+        if len(erros_sintaticos) == 0:
+            f.write("Análise sintática concluída sem erros.\n")
+        else:
+            f.write("Erros sintáticos encontrados:\n")
+            for erro in erros_sintaticos:
+                f.write(f"{erro}\n")
+                
 if __name__ == "__main__":
 
     #Definição de qual código testar
-    example = testeCont 
+    example = exampleIO 
 
     print("- - - Testando Exemplo - - -\n")
-    test_example(example)
-    print("\n")
     
-    result = parser.parse(example)
-    format_result(result)
-    print("\nAnálise concluída!")
+    gerar_arquivo_reconhecimento(example)
+    
+    print("\nAnálise Léxica e Sintática concluída!")

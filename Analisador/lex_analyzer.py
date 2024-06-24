@@ -8,36 +8,33 @@ reserved = {
     'while': 'REPETICAO',
     'if': 'CASO',
     'else': 'CASOCONTRARIO',
+    'int': 'TIPO_INTEIRO',
+    'real': 'TIPO_REAL',
+    'char': 'TIPO_CARACTER'
 }
 
-# lista dos tokens
+# Lista de Tokens
 tokens = [
-    'SOMA', 'SUB', 'MULT', 'DIV', 'RESTO', # op matematicos
-    'DOISPONTOS', 'PONTOVIRGULA', 
+    #Matemáticos
+    'SOMA', 'SUB', 'MULT', 'DIV', 'RESTO', 
 
-    # No nosso trabalho é separador
-    'VIRGULA', 'PONTO',
-
-    # Operadores de Impressão 
+    # Impressão 
     'ASPAS', 'COMENTARIO', 'FINALLINHA',
 
-    # Operadores de Atribuição 
+    # Atribuição 
     'ATRIBUICAO',
 
-    # Operadores Relacionais
+    # Relacionais
     'MENOR', 'MAIOR', 'MENORIGUAL', 'MAIORIGUAL', 'DUPLOIGUAL', 'DIFERENTE', 'AND', 'OR', 'NOT',
-   
-    # Operadores de Prioridade
-    'ABREPARENTESE', 'FECHAPARENTESE', 'INICIOBLOCO', 'FIMBLOCO',
-   
-    # Identificadores
-    'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL', 'RESERVADA',
 
-    # Tokens malformados
-    'variavel_mf', 'numero_mf', 'string_mf'
+    # Identificadores
+    'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL',
+    
+    # Outros
+    'VIRGULA', 'PONTO', 'DOISPONTOS', 'PONTOVIRGULA', 'ABREPARENTESE', 'FECHAPARENTESE', 'INICIOBLOCO', 'FIMBLOCO',
 ] + list(reserved.values())  # Concateno com as palavras reservadas para verificação
 
-# Regras de expressão regular (RegEx) para tokens simples
+# Regras de (RegEx) para tokens simples
 t_SOMA = r'\+'
 t_SUB = r'-'
 t_MULT = r'\*'
@@ -47,7 +44,7 @@ t_RESTO = r'%'
 t_DOISPONTOS = r':'
 t_PONTOVIRGULA = r';'
 t_VIRGULA = r','
-t_PONTO = r'.'
+t_PONTO = r'\.'
 
 t_ASPAS = r'\"'
 t_COMENTARIO = r'\#.*'
@@ -69,12 +66,11 @@ t_FECHAPARENTESE = r'\)'
 t_INICIOBLOCO = r'\{'
 t_FIMBLOCO = r'\}'
 
-# Ignorar espaços em branco e tabulações
-t_ignore = ' \t'
+t_ignore = ' \t' # Ignorar espaços em branco e tabulações
 
-# Regras de expressão regular (RegEx) para tokens mais "complexos"
+# Regras de (RegEx) para tokens mais "complexos"
 def t_VARIAVEL(t):
-    r'[a-zA-Z]+(\d*[a-zA-Z]*)*'
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, 'VARIAVEL')
     return t
 
@@ -95,20 +91,20 @@ def t_CARACTER(t):
 
 def t_string_mf(t):
     r'("[^"]*)'
-    print(f"String malformada: {t.value}")
+    print(f"String malformada: {t.value} na linha {t.lineno}")
     return t
 
 def t_variavel_mf(t):
-    r'([0-9]+[a-z]+)|([@!#$%&*]+[a-z]+|[a-z]+\.[0-9]+|[a-z]+[@!#$%&*]+)'
-    print(f"Variável malformada: {t.value}")
+    r'([0-9]+[a-z]+)|([@!#$%&]+[a-z]+|[a-z]+\.[0-9]+|[a-z]+[@!#$%&]+)'
+    print(f"Variável malformada: {t.value} na linha {t.lineno}")
     return t
 
 def t_numero_mf(t):
     r'([0-9]+\.[a-z]+[0-9]+)|([0-9]+\.[a-z]+)|([0-9]+\.[0-9]+[a-z]+)'
-    print(f"Número malformado: {t.value}")
+    print(f"Número malformado: {t.value} na linha {t.lineno}")
     return t
 
-#Defina uma regra para que seja possível rastrear o números de linha
+# Rastrear o números de linhas
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
@@ -118,13 +114,16 @@ def t_FINALLINHA(t):
     t.lexer.lineno += len(t.value)
     return t
 
-# Regra de tratamento de erros
+# Tratamento de erros
 erroslexicos = []
 
 def t_error(t):
-    print(f"Caractere ilegal '{t.value[0]}'")
+    print(f"Caractere ilegal '{t.value[0]}' na linha {t.lineno}")
     erroslexicos.append(t)
+    t.type = 'ILEGAL'
+    t.value = t.value[0]
     t.lexer.skip(1)
+    return t
 
 # Constrói o lexer
 lexer = lex.lex()
