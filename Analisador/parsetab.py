@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABREPARENTESE AND ASPAS ATRIBUICAO CARACTER CASO CASOCONTRARIO CLOSE COMENTARIO DIFERENTE DIV DOISPONTOS DUPLOIGUAL ENTRADA FECHAPARENTESE FIMBLOCO FINALLINHA INICIOBLOCO INTEIRO MAIOR MAIORIGUAL MENOR MENORIGUAL MULT NOT OR PLAY PONTO PONTOVIRGULA REAL REPETICAO RESERVADA RESTO SAIDA SOMA SUB VARIAVEL VIRGULA numero_mf string_mf variavel_mfprogram : PLAY declarations statements CLOSEdeclarations : declarations declaration\n                    | emptydeclaration : type VARIAVEL PONTOVIRGULAtype : RESERVADAstatements : statements statement\n                  | emptystatement : assignment_statement\n                 | if_statement\n                 | while_statement\n                 | io_statementassignment_statement : VARIAVEL ATRIBUICAO expression PONTOVIRGULAif_statement : CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO else_statementelse_statement : CASOCONTRARIO INICIOBLOCO statements FIMBLOCO\n                      | emptywhile_statement : REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCOio_statement : ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA\n                    | SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULAexpression : term\n                  | expression SOMA term\n                  | expression SUB term\n                  | expression MENOR term\n                  | expression MAIOR term\n                  | expression MENORIGUAL term\n                  | expression MAIORIGUAL term\n                  | expression DUPLOIGUAL term\n                  | expression DIFERENTE term\n                  | expression AND term\n                  | expression OR termterm : factor\n            | term MULT factor\n            | term DIV factor\n            | term RESTO factorfactor : VARIAVEL\n              | INTEIRO\n              | REAL\n              | ABREPARENTESE expression FECHAPARENTESEempty :'
+_lr_signature = 'ABREPARENTESE AND ASPAS ATRIBUICAO CARACTER CASO CASOCONTRARIO CLOSE COMENTARIO DIFERENTE DIV DOISPONTOS DUPLOIGUAL ENTRADA FECHAPARENTESE FIMBLOCO FINALLINHA INICIOBLOCO INTEIRO MAIOR MAIORIGUAL MENOR MENORIGUAL MULT NOT OR PLAY PONTO PONTOVIRGULA REAL REPETICAO RESERVADA RESTO SAIDA SOMA SUB VARIAVEL VIRGULA numero_mf string_mf variavel_mfprogram : PLAY declarativas estados CLOSEdeclarativas : declarativas declarativa\n                    | vaziodeclarativa : tipo VARIAVEL PONTOVIRGULAtipo : RESERVADAestados : estados estado\n                  | vazioestado : assinalar_estado\n                 | se_estado\n                 | repeticao_estado\n                 | io_estadoassinalar_estado : VARIAVEL ATRIBUICAO expressao PONTOVIRGULAse_estado : CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estadosenao_estado : CASOCONTRARIO INICIOBLOCO estados FIMBLOCO\n                      | vaziorepeticao_estado : REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCOio_estado : ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA\n                    | SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULAexpressao : termo\n                  | expressao SOMA termo\n                  | expressao SUB termo\n                  | expressao MENOR termo\n                  | expressao MAIOR termo\n                  | expressao MENORIGUAL termo\n                  | expressao MAIORIGUAL termo\n                  | expressao DUPLOIGUAL termo\n                  | expressao DIFERENTE termo\n                  | expressao AND termo\n                  | expressao OR termotermo : fator\n            | termo MULT fator\n            | termo DIV fator\n            | termo RESTO fatorfator : VARIAVEL\n              | INTEIRO\n              | REAL\n              | ABREPARENTESE expressao FECHAPARENTESEvazio :'
     
 _lr_action_items = {'PLAY':([0,],[2,]),'$end':([1,10,],[0,-1,]),'RESERVADA':([2,3,4,6,27,],[-38,9,-3,-2,-4,]),'CLOSE':([2,3,4,5,6,7,11,12,13,14,15,27,39,74,75,78,79,80,82,85,],[-38,-38,-3,10,-2,-7,-6,-8,-9,-10,-11,-4,-12,-17,-18,-38,-16,-13,-15,-14,]),'VARIAVEL':([2,3,4,5,6,7,8,9,11,12,13,14,15,22,23,24,25,26,27,34,39,40,41,42,43,44,45,46,47,48,49,50,51,52,72,73,74,75,76,77,78,79,80,82,83,84,85,],[-38,-38,-3,16,-2,-7,21,-5,-6,-8,-9,-10,-11,28,28,28,37,28,-4,28,-12,28,28,28,28,28,28,28,28,28,28,28,28,28,-38,-38,-17,-18,16,16,-38,-16,-13,-15,-38,16,-14,]),'CASO':([2,3,4,5,6,7,11,12,13,14,15,27,39,72,73,74,75,76,77,78,79,80,82,83,84,85,],[-38,-38,-3,17,-2,-7,-6,-8,-9,-10,-11,-4,-12,-38,-38,-17,-18,17,17,-38,-16,-13,-15,-38,17,-14,]),'REPETICAO':([2,3,4,5,6,7,11,12,13,14,15,27,39,72,73,74,75,76,77,78,79,80,82,83,84,85,],[-38,-38,-3,18,-2,-7,-6,-8,-9,-10,-11,-4,-12,-38,-38,-17,-18,18,18,-38,-16,-13,-15,-38,18,-14,]),'ENTRADA':([2,3,4,5,6,7,11,12,13,14,15,27,39,72,73,74,75,76,77,78,79,80,82,83,84,85,],[-38,-38,-3,19,-2,-7,-6,-8,-9,-10,-11,-4,-12,-38,-38,-17,-18,19,19,-38,-16,-13,-15,-38,19,-14,]),'SAIDA':([2,3,4,5,6,7,11,12,13,14,15,27,39,72,73,74,75,76,77,78,79,80,82,83,84,85,],[-38,-38,-3,20,-2,-7,-6,-8,-9,-10,-11,-4,-12,-38,-38,-17,-18,20,20,-38,-16,-13,-15,-38,20,-14,]),'FIMBLOCO':([7,11,12,13,14,15,39,72,73,74,75,76,77,78,79,80,82,83,84,85,],[-7,-6,-8,-9,-10,-11,-12,-38,-38,-17,-18,78,79,-38,-16,-13,-15,-38,85,-14,]),'ATRIBUICAO':([16,],[22,]),'ABREPARENTESE':([17,18,19,20,22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,50,51,52,],[23,24,25,26,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,]),'PONTOVIRGULA':([21,28,29,30,31,32,33,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[27,-34,39,-19,-30,-35,-36,74,75,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'INTEIRO':([22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,50,51,52,],[32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,]),'REAL':([22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,50,51,52,],[33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,]),'MULT':([28,30,31,32,33,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,50,-30,-35,-36,50,50,50,50,50,50,50,50,50,50,-31,-32,-33,-37,]),'DIV':([28,30,31,32,33,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,51,-30,-35,-36,51,51,51,51,51,51,51,51,51,51,-31,-32,-33,-37,]),'RESTO':([28,30,31,32,33,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,52,-30,-35,-36,52,52,52,52,52,52,52,52,52,52,-31,-32,-33,-37,]),'SOMA':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,40,-19,-30,-35,-36,40,40,40,40,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'SUB':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,41,-19,-30,-35,-36,41,41,41,41,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'MENOR':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,42,-19,-30,-35,-36,42,42,42,42,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'MAIOR':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,43,-19,-30,-35,-36,43,43,43,43,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'MENORIGUAL':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,44,-19,-30,-35,-36,44,44,44,44,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'MAIORIGUAL':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,45,-19,-30,-35,-36,45,45,45,45,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'DUPLOIGUAL':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,46,-19,-30,-35,-36,46,46,46,46,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'DIFERENTE':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,47,-19,-30,-35,-36,47,47,47,47,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'AND':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,48,-19,-30,-35,-36,48,48,48,48,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'OR':([28,29,30,31,32,33,35,36,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,49,-19,-30,-35,-36,49,49,49,49,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'FECHAPARENTESE':([28,30,31,32,33,35,36,37,38,53,58,59,60,61,62,63,64,65,66,67,68,69,70,71,],[-34,-19,-30,-35,-36,54,55,56,57,71,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-31,-32,-33,-37,]),'INICIOBLOCO':([54,55,81,],[72,73,83,]),'CASOCONTRARIO':([78,],[81,]),}
 
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'declarations':([2,],[3,]),'empty':([2,3,72,73,78,83,],[4,7,7,7,82,7,]),'statements':([3,72,73,83,],[5,76,77,84,]),'declaration':([3,],[6,]),'type':([3,],[8,]),'statement':([5,76,77,84,],[11,11,11,11,]),'assignment_statement':([5,76,77,84,],[12,12,12,12,]),'if_statement':([5,76,77,84,],[13,13,13,13,]),'while_statement':([5,76,77,84,],[14,14,14,14,]),'io_statement':([5,76,77,84,],[15,15,15,15,]),'expression':([22,23,24,26,34,],[29,35,36,38,53,]),'term':([22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,],[30,30,30,30,30,58,59,60,61,62,63,64,65,66,67,]),'factor':([22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,50,51,52,],[31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,68,69,70,]),'else_statement':([78,],[80,]),}
+_lr_goto_items = {'program':([0,],[1,]),'declarativas':([2,],[3,]),'vazio':([2,3,72,73,78,83,],[4,7,7,7,82,7,]),'estados':([3,72,73,83,],[5,76,77,84,]),'declarativa':([3,],[6,]),'tipo':([3,],[8,]),'estado':([5,76,77,84,],[11,11,11,11,]),'assinalar_estado':([5,76,77,84,],[12,12,12,12,]),'se_estado':([5,76,77,84,],[13,13,13,13,]),'repeticao_estado':([5,76,77,84,],[14,14,14,14,]),'io_estado':([5,76,77,84,],[15,15,15,15,]),'expressao':([22,23,24,26,34,],[29,35,36,38,53,]),'termo':([22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,],[30,30,30,30,30,58,59,60,61,62,63,64,65,66,67,]),'fator':([22,23,24,26,34,40,41,42,43,44,45,46,47,48,49,50,51,52,],[31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,68,69,70,]),'senao_estado':([78,],[80,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,42 +27,42 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> PLAY declarations statements CLOSE','program',4,'p_program','sint_analyzer.py',7),
-  ('declarations -> declarations declaration','declarations',2,'p_declarations','sint_analyzer.py',11),
-  ('declarations -> empty','declarations',1,'p_declarations','sint_analyzer.py',12),
-  ('declaration -> type VARIAVEL PONTOVIRGULA','declaration',3,'p_declaration','sint_analyzer.py',19),
-  ('type -> RESERVADA','type',1,'p_type','sint_analyzer.py',23),
-  ('statements -> statements statement','statements',2,'p_statements','sint_analyzer.py',27),
-  ('statements -> empty','statements',1,'p_statements','sint_analyzer.py',28),
-  ('statement -> assignment_statement','statement',1,'p_statement','sint_analyzer.py',35),
-  ('statement -> if_statement','statement',1,'p_statement','sint_analyzer.py',36),
-  ('statement -> while_statement','statement',1,'p_statement','sint_analyzer.py',37),
-  ('statement -> io_statement','statement',1,'p_statement','sint_analyzer.py',38),
-  ('assignment_statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA','assignment_statement',4,'p_assignment_statement','sint_analyzer.py',42),
-  ('if_statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO else_statement','if_statement',8,'p_if_statement','sint_analyzer.py',46),
-  ('else_statement -> CASOCONTRARIO INICIOBLOCO statements FIMBLOCO','else_statement',4,'p_else_statement','sint_analyzer.py',50),
-  ('else_statement -> empty','else_statement',1,'p_else_statement','sint_analyzer.py',51),
-  ('while_statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO','while_statement',7,'p_while_statement','sint_analyzer.py',58),
-  ('io_statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA','io_statement',5,'p_io_statement','sint_analyzer.py',62),
-  ('io_statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA','io_statement',5,'p_io_statement','sint_analyzer.py',63),
-  ('expression -> term','expression',1,'p_expression','sint_analyzer.py',67),
-  ('expression -> expression SOMA term','expression',3,'p_expression','sint_analyzer.py',68),
-  ('expression -> expression SUB term','expression',3,'p_expression','sint_analyzer.py',69),
-  ('expression -> expression MENOR term','expression',3,'p_expression','sint_analyzer.py',70),
-  ('expression -> expression MAIOR term','expression',3,'p_expression','sint_analyzer.py',71),
-  ('expression -> expression MENORIGUAL term','expression',3,'p_expression','sint_analyzer.py',72),
-  ('expression -> expression MAIORIGUAL term','expression',3,'p_expression','sint_analyzer.py',73),
-  ('expression -> expression DUPLOIGUAL term','expression',3,'p_expression','sint_analyzer.py',74),
-  ('expression -> expression DIFERENTE term','expression',3,'p_expression','sint_analyzer.py',75),
-  ('expression -> expression AND term','expression',3,'p_expression','sint_analyzer.py',76),
-  ('expression -> expression OR term','expression',3,'p_expression','sint_analyzer.py',77),
-  ('term -> factor','term',1,'p_term','sint_analyzer.py',84),
-  ('term -> term MULT factor','term',3,'p_term','sint_analyzer.py',85),
-  ('term -> term DIV factor','term',3,'p_term','sint_analyzer.py',86),
-  ('term -> term RESTO factor','term',3,'p_term','sint_analyzer.py',87),
-  ('factor -> VARIAVEL','factor',1,'p_factor','sint_analyzer.py',94),
-  ('factor -> INTEIRO','factor',1,'p_factor','sint_analyzer.py',95),
-  ('factor -> REAL','factor',1,'p_factor','sint_analyzer.py',96),
-  ('factor -> ABREPARENTESE expression FECHAPARENTESE','factor',3,'p_factor','sint_analyzer.py',97),
-  ('empty -> <empty>','empty',0,'p_empty','sint_analyzer.py',104),
+  ('program -> PLAY declarativas estados CLOSE','program',4,'p_program','sint_analyzer.py',7),
+  ('declarativas -> declarativas declarativa','declarativas',2,'p_declarativas','sint_analyzer.py',11),
+  ('declarativas -> vazio','declarativas',1,'p_declarativas','sint_analyzer.py',12),
+  ('declarativa -> tipo VARIAVEL PONTOVIRGULA','declarativa',3,'p_declarativa','sint_analyzer.py',19),
+  ('tipo -> RESERVADA','tipo',1,'p_tipo','sint_analyzer.py',23),
+  ('estados -> estados estado','estados',2,'p_estados','sint_analyzer.py',27),
+  ('estados -> vazio','estados',1,'p_estados','sint_analyzer.py',28),
+  ('estado -> assinalar_estado','estado',1,'p_estado','sint_analyzer.py',35),
+  ('estado -> se_estado','estado',1,'p_estado','sint_analyzer.py',36),
+  ('estado -> repeticao_estado','estado',1,'p_estado','sint_analyzer.py',37),
+  ('estado -> io_estado','estado',1,'p_estado','sint_analyzer.py',38),
+  ('assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA','assinalar_estado',4,'p_assinalar_estado','sint_analyzer.py',42),
+  ('se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado','se_estado',8,'p_se_estado','sint_analyzer.py',46),
+  ('senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO','senao_estado',4,'p_senao_estado','sint_analyzer.py',50),
+  ('senao_estado -> vazio','senao_estado',1,'p_senao_estado','sint_analyzer.py',51),
+  ('repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO','repeticao_estado',7,'p_repeticao_estado','sint_analyzer.py',58),
+  ('io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA','io_estado',5,'p_io_estado','sint_analyzer.py',62),
+  ('io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA','io_estado',5,'p_io_estado','sint_analyzer.py',63),
+  ('expressao -> termo','expressao',1,'p_expressao','sint_analyzer.py',67),
+  ('expressao -> expressao SOMA termo','expressao',3,'p_expressao','sint_analyzer.py',68),
+  ('expressao -> expressao SUB termo','expressao',3,'p_expressao','sint_analyzer.py',69),
+  ('expressao -> expressao MENOR termo','expressao',3,'p_expressao','sint_analyzer.py',70),
+  ('expressao -> expressao MAIOR termo','expressao',3,'p_expressao','sint_analyzer.py',71),
+  ('expressao -> expressao MENORIGUAL termo','expressao',3,'p_expressao','sint_analyzer.py',72),
+  ('expressao -> expressao MAIORIGUAL termo','expressao',3,'p_expressao','sint_analyzer.py',73),
+  ('expressao -> expressao DUPLOIGUAL termo','expressao',3,'p_expressao','sint_analyzer.py',74),
+  ('expressao -> expressao DIFERENTE termo','expressao',3,'p_expressao','sint_analyzer.py',75),
+  ('expressao -> expressao AND termo','expressao',3,'p_expressao','sint_analyzer.py',76),
+  ('expressao -> expressao OR termo','expressao',3,'p_expressao','sint_analyzer.py',77),
+  ('termo -> fator','termo',1,'p_termo','sint_analyzer.py',84),
+  ('termo -> termo MULT fator','termo',3,'p_termo','sint_analyzer.py',85),
+  ('termo -> termo DIV fator','termo',3,'p_termo','sint_analyzer.py',86),
+  ('termo -> termo RESTO fator','termo',3,'p_termo','sint_analyzer.py',87),
+  ('fator -> VARIAVEL','fator',1,'p_fator','sint_analyzer.py',94),
+  ('fator -> INTEIRO','fator',1,'p_fator','sint_analyzer.py',95),
+  ('fator -> REAL','fator',1,'p_fator','sint_analyzer.py',96),
+  ('fator -> ABREPARENTESE expressao FECHAPARENTESE','fator',3,'p_fator','sint_analyzer.py',97),
+  ('vazio -> <empty>','vazio',0,'p_vazio','sint_analyzer.py',104),
 ]
