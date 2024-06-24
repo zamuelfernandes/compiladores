@@ -6,13 +6,11 @@ from sint_analyzer import parser
 
 # Função de teste para ver a contagem de linhas
 def test_line_counting():
-    data = '''
-    int x;
+    data = '''int x;
     x = 10;
     if (x > 5) {
         x = x + 1;
-    }
-    '''
+    }'''
     lexer.input(data)
     while True:
         tok = lexer.token()

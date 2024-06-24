@@ -3,9 +3,9 @@ from lex_analyzer import tokens
 
 # Regras de produção para o analisador sintático
 
-def p_program(p):
-    '''program : PLAY declarativas estados CLOSE'''
-    p[0] = ('program', p[2], p[3])
+def p_programa(p):
+    '''programa : PLAY declarativas estados CLOSE'''
+    p[0] = ('programa', p[2], p[3])
 
 def p_declarativas(p):
     '''declarativas : declarativas declarativa
