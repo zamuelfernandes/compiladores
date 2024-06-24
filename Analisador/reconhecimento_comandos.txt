@@ -1,0 +1,29 @@
+Reconhecimento Léxico:
+Token: PLAY | Valor: 'play' | Linha: 1
+Token: TIPO_INTEIRO | Valor: 'int' | Linha: 2
+Token: VARIAVEL | Valor: 'x' | Linha: 2
+Token: PONTOVIRGULA | Valor: ';' | Linha: 2
+Token: TIPO_INTEIRO | Valor: 'int' | Linha: 3
+Token: VARIAVEL | Valor: 'y' | Linha: 3
+Token: PONTOVIRGULA | Valor: ';' | Linha: 3
+Token: ENTRADA | Valor: 'read' | Linha: 4
+Token: ABREPARENTESE | Valor: '(' | Linha: 4
+Token: VARIAVEL | Valor: 'x' | Linha: 4
+Token: FECHAPARENTESE | Valor: ')' | Linha: 4
+Token: PONTOVIRGULA | Valor: ';' | Linha: 4
+Token: ENTRADA | Valor: 'read' | Linha: 5
+Token: ABREPARENTESE | Valor: '(' | Linha: 5
+Token: VARIAVEL | Valor: 'y' | Linha: 5
+Token: FECHAPARENTESE | Valor: ')' | Linha: 5
+Token: PONTOVIRGULA | Valor: ';' | Linha: 5
+Token: SAIDA | Valor: 'write' | Linha: 6
+Token: ABREPARENTESE | Valor: '(' | Linha: 6
+Token: VARIAVEL | Valor: 'x' | Linha: 6
+Token: SOMA | Valor: '+' | Linha: 6
+Token: VARIAVEL | Valor: 'y' | Linha: 6
+Token: FECHAPARENTESE | Valor: ')' | Linha: 6
+Token: PONTOVIRGULA | Valor: ';' | Linha: 6
+Token: CLOSE | Valor: 'close' | Linha: 7
+
+Reconhecimento Sintático:
+Análise sintática concluída sem erros.

@@ -2,59 +2,77 @@ import ply.yacc as yacc
 from lex_analyzer import tokens
 
 # Definição das regras de produção
+def p_programa(p):
+    '''programa : PLAY estados CLOSE'''
 
-def p_program(p):
-    '''program : PLAY statements CLOSE'''
+def p_estados_multiple(p):
+    '''estados : estados estado'''
 
-def p_statements_multiple(p):
-    '''statements : statements statement'''
+def p_estados_single(p):
+    '''estados : estado'''
 
-def p_statements_single(p):
-    '''statements : statement'''
+def p_estado_while(p):
+    '''estado : REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO'''
 
-def p_statement_while(p):
-    '''statement : REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO'''
+def p_estado_if(p):
+    '''estado : CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
+                 | CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO CASOCONTRARIO INICIOBLOCO estados FIMBLOCO'''
 
-def p_statement_if(p):
-    '''statement : CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
-                 | CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO'''
-
-def p_statement_assignment(p):
-    '''statement : VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+def p_estado_assignment(p):
+    '''estado : VARIAVEL ATRIBUICAO expressao PONTOVIRGULA
                  | VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
                  | VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
                  | VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
                  | VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA'''
 
-def p_statement_io(p):
-    '''statement : ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
-                 | SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA'''
+def p_estado_declaration(p):
+    '''estado : TIPO_INTEIRO VARIAVEL PONTOVIRGULA
+                 | TIPO_REAL VARIAVEL PONTOVIRGULA
+                 | TIPO_CARACTER VARIAVEL PONTOVIRGULA'''
 
-def p_expression_binop(p):
-    '''expression : expression SOMA expression
-                  | expression SUB expression
-                  | expression MULT expression
-                  | expression DIV expression
-                  | expression RESTO expression'''
+def p_estado_io(p):
+    '''estado : ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+                 | SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA'''
 
-def p_expression_group(p):
-    '''expression : ABREPARENTESE expression FECHAPARENTESE'''
+def p_expressao_binop(p):
+    '''expressao : expressao SOMA expressao
+                  | expressao SUB expressao
+                  | expressao MULT expressao
+                  | expressao DIV expressao
+                  | expressao RESTO expressao'''
 
-def p_expression_number(p):
-    '''expression : INTEIRO
+def p_expressao_relational(p):
+    '''expressao : expressao MENOR expressao
+                  | expressao MAIOR expressao
+                  | expressao MENORIGUAL expressao
+                  | expressao MAIORIGUAL expressao
+                  | expressao DUPLOIGUAL expressao
+                  | expressao DIFERENTE expressao'''
+
+def p_expressao_group(p):
+    '''expressao : ABREPARENTESE expressao FECHAPARENTESE'''
+
+def p_expressao_number(p):
+    '''expressao : INTEIRO
                   | REAL'''
 
-def p_expression_variable(p):
-    '''expression : VARIAVEL'''
+def p_expressao_variable(p):
+    '''expressao : VARIAVEL'''
 
-def p_expression_character(p):
-    '''expression : CARACTER'''
+def p_expressao_character(p):
+    '''expressao : CARACTER'''
+
+erros_sintaticos = []
 
 def p_error(p):
     if p:
-        print(f"Erro de sintaxe na linha {p.lineno}:\nToken inesperado '{p.value}' | Tipo: {p.type}")
+        erro = f"Erro de sintaxe na linha {p.lineno}: Token inesperado '{p.value}' | Tipo: {p.type}"
+        print(erro)
+        erros_sintaticos.append(erro)
     else:
-        print("Erro de sintaxe: EOF inesperado")
+        erro = "Erro de sintaxe: EOF inesperado"
+        print(erro)
+        erros_sintaticos.append(erro)
 
 # Construir o parser
 parser = yacc.yacc()

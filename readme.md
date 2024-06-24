@@ -1,125 +1,55 @@
-# Projeto de Compiladores
+# 📚 Analisador Léxico e Sintático
 
-## Descrição do Projeto
+Este projeto implementa um analisador léxico e sintático para uma linguagem de programação personalizada, utilizando Python e PLY (Python Lex-Yacc).
 
-Este projeto tem como objetivo a construção de um analisador léxico e sintático para a nossa linguagem de programação. A linguagem, chamada `MiniLang`, possui um conjunto definido de palavras reservadas, operadores e regras gramaticais.
+## 📋 Objetivos do Trabalho
 
-## Estrutura do Projeto
+- Criar, desenvolver e implementar um analisador léxico e sintático para uma linguagem de programação.
+- Implementar exemplos de programas usando comandos de entrada e saída, comandos condicionais e comandos de repetição.
 
-O projeto está organizado da seguinte forma:
+## 🛠️ Ferramentas Utilizadas
 
-- `lex_analyzer.py`: Contém o código do analisador léxico.
-- `sint_analyzer.py`: Contém o código do analisador sintático.
-- `test_lexer.py`: Script para testar o analisador léxico.
-- `test_parser.py`: Script para testar o analisador sintático.
-- `example_programs/`: Pasta contendo programas de exemplo na linguagem `MiniLang`.
+- [PLY (Python Lex-Yacc)](http://www.dabeaz.com/ply/)
 
-## Requisitos
+## 🚀 Como Executar
 
-Para executar este projeto, você precisará ter o Python e a biblioteca PLY instalados. Você pode instalá-los usando:
+### Pré-requisitos
 
-```bash
-pip install ply
-```
+- Python 3.x instalado
+- Biblioteca PLY instalada (`pip install ply`)
+  ```sh
+  pip install ply
+  ```
 
-## Analisador Léxico
+### Passos para Execução
 
-O analisador léxico é responsável por dividir o código-fonte em tokens. Ele reconhece palavras reservadas, operadores, delimitadores e identificadores específicos da linguagem.
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```sh
+   cd seu-repositorio
+   ```
+3. Execute o analisador léxico e sintático com um dos exemplos fornecidos:
+   ```sh
+   python main.py
+   ```
 
-#### Palavras reservadas
+### 📂 Estrutura do Projeto
 
-As palavras reservadas da linguagem incluem:
+- `main.py`: Contém o código principal do analisador léxico e sintático e os exemplos.
+- `lex_analyzer.py`: Contém as definições dos tokens e regras léxicas.
+- `sint_analyser.py`: Contém as definições das regras de produção e a lógica do parser.
 
-- `play`
-- `close`
-- `read`
-- `write`
-- `while`
-- `if`
-- `else`
+### 📄 Exemplos de Programas
 
-#### Operadores e Delimitadores
+- **Entrada e Saída**: `examples/exampleIO.txt`
+- **Condicionais**: `examples/exampleCond.txt`
+- **Repetição**: `examples/exampleRepeat.txt`
 
-Os operadores incluem soma, subtração, multiplicação, divisão, entre outros. Delimitadores como ponto-e-vírgula, dois pontos, vírgula, e ponto também são reconhecidos.
+## 📜 Licença
 
-#### Testando o Analisador Léxico
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais informações.
 
-Para testar o analisador léxico, execute o script test_lexer.py:
-
-```bash
-python test_lexer.py
-```
-
-## Analisador Sintático
-
-O analisador sintático verifica a estrutura gramatical do código-fonte, assegurando que ele siga as regras da linguagem.
-
-#### Regras Gramaticais
-
-As regras gramaticais definem como instruções, expressões e blocos de código são estruturados na linguagem. Exemplos de estruturas gramaticais incluem:
-
-- Declarações condicionais
-- Laços de repetição
-- Atribuições e expressões aritméticas
-
-#### Testando o Analisador Sintático
-
-Para testar o analisador sintático, execute o script test_parser.py:
-
-```bash
-python test_parser.py
-```
-
-## Programas de Exemplo
-
-A pasta example_programs/ contém exemplos de programas escritos em MiniLang para ajudar a ilustrar como a linguagem funciona. Estes exemplos podem ser usados para testar tanto o analisador léxico quanto o sintático.
-
-#### Exemplo 1: Entrada e Saída
-
-```bash
-play
-    int x;
-    int y;
-    read(x);
-    read(y);
-    write(x + y);
-close
-```
-
-#### Exemplo 2: Comando Condicional
-
-```bash
-play
-    int a;
-    int b;
-    int max;
-    read(a);
-    read(b);
-    if (a > b) {
-        max <- a;
-    } else {
-        max <- b;
-    }
-    write(max);
-close
-```
-
-#### Exemplo 3: Laço de Repetição
-
-```bash
-play
-    int i;
-    int sum;
-    sum <- 0;
-    i <- 1;
-    while (i <= 10) {
-        sum <- sum + i;
-        i <- i + 1;
-    }
-    write(sum);
-close
-```
-
-## Autor
-
-Este projeto foi desenvolvido por Samuel Fernandes e Bianca Rossi
+---
