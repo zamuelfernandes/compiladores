@@ -1,9 +1,0 @@
-Analisador Léxico (lex_analyzer.py):
-- Define as regras léxicas usando expressões regulares para identificar tokens na entrada.
-- Ignora espaços e tabulações, e rastreia o número de linha.
-- Inclui uma função de tratamento de erros para caracteres ilegais.
-
-Analisador Sintático (parser.py):
-- Define as regras gramaticais para analisar a estrutura da linguagem.
-- Inclui produções para declarações, expressões, atribuições, condicionais e laços.
-- Inclui uma função de tratamento de erros para erros sintáticos.
