@@ -8,6 +8,9 @@ reserved = {
     'while': 'REPETICAO',
     'if': 'CASO',
     'else': 'CASOCONTRARIO',
+    'int': 'INTEIRO',
+    'real': 'REAL',
+    'char': 'CARACTER'
 }
 
 # lista dos tokens
@@ -31,7 +34,7 @@ tokens = [
     'ABREPARENTESE', 'FECHAPARENTESE', 'INICIOBLOCO', 'FIMBLOCO',
    
     # Identificadores
-    'INTEIRO', 'REAL', 'CARACTER', 'VARIAVEL', 'RESERVADA',
+    'VARIAVEL', 'RESERVADA',
 
     # Tokens malformados
     'variavel_mf', 'numero_mf', 'string_mf'
@@ -47,7 +50,7 @@ t_RESTO = r'%'
 t_DOISPONTOS = r':'
 t_PONTOVIRGULA = r';'
 t_VIRGULA = r','
-t_PONTO = r'.'
+t_PONTO = r'\.'
 
 t_ASPAS = r'\"'
 t_COMENTARIO = r'\#.*'

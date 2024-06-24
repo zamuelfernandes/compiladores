@@ -41,11 +41,14 @@ example3 = '''play
     write(sum);
 close'''
 
-testeCont = '''int x;
-    x = 10;
+#Exemplo 4: Testes Genéricos
+testeCont = '''play
+    int x;
+    x <- 10;
     if (x > 5) {
-        x = x + 1;
-    }'''
+        x <- x + 1;
+    }
+close'''
 
 # Função para testar um exemplo léxico
 def test_example(data):

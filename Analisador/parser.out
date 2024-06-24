@@ -2,13 +2,21 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    AND
     ASPAS
-    CARACTER
     COMENTARIO
+    DIFERENTE
     DOISPONTOS
+    DUPLOIGUAL
     FINALLINHA
+    MAIOR
+    MAIORIGUAL
+    MENOR
+    MENORIGUAL
     NOT
+    OR
     PONTO
+    RESERVADA
     VIRGULA
     numero_mf
     string_mf
@@ -16,85 +24,70 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> programa
-Rule 1     programa -> PLAY declarativas estados CLOSE
-Rule 2     declarativas -> declarativas declarativa
-Rule 3     declarativas -> vazio
-Rule 4     declarativa -> tipo VARIAVEL PONTOVIRGULA
-Rule 5     tipo -> RESERVADA
-Rule 6     estados -> estados estado
-Rule 7     estados -> vazio
-Rule 8     estado -> assinalar_estado
-Rule 9     estado -> se_estado
-Rule 10    estado -> repeticao_estado
-Rule 11    estado -> io_estado
-Rule 12    assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA
-Rule 13    se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-Rule 14    senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO
-Rule 15    senao_estado -> vazio
-Rule 16    repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-Rule 17    io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
-Rule 18    io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA
-Rule 19    expressao -> termo
-Rule 20    expressao -> expressao SOMA termo
-Rule 21    expressao -> expressao SUB termo
-Rule 22    expressao -> expressao MENOR termo
-Rule 23    expressao -> expressao MAIOR termo
-Rule 24    expressao -> expressao MENORIGUAL termo
-Rule 25    expressao -> expressao MAIORIGUAL termo
-Rule 26    expressao -> expressao DUPLOIGUAL termo
-Rule 27    expressao -> expressao DIFERENTE termo
-Rule 28    expressao -> expressao AND termo
-Rule 29    expressao -> expressao OR termo
-Rule 30    termo -> fator
-Rule 31    termo -> termo MULT fator
-Rule 32    termo -> termo DIV fator
-Rule 33    termo -> termo RESTO fator
-Rule 34    fator -> VARIAVEL
-Rule 35    fator -> INTEIRO
-Rule 36    fator -> REAL
-Rule 37    fator -> ABREPARENTESE expressao FECHAPARENTESE
-Rule 38    vazio -> <empty>
+Rule 0     S' -> program
+Rule 1     program -> PLAY statements CLOSE
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+Rule 5     statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+Rule 6     statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+Rule 7     statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+Rule 8     statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+Rule 9     statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+Rule 10    statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+Rule 11    statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+Rule 12    statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+Rule 13    statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
+Rule 14    expression -> expression SOMA expression
+Rule 15    expression -> expression SUB expression
+Rule 16    expression -> expression MULT expression
+Rule 17    expression -> expression DIV expression
+Rule 18    expression -> expression RESTO expression
+Rule 19    expression -> ABREPARENTESE expression FECHAPARENTESE
+Rule 20    expression -> INTEIRO
+Rule 21    expression -> REAL
+Rule 22    expression -> VARIAVEL
+Rule 23    expression -> CARACTER
 
 Terminals, with rules where they appear
 
-ABREPARENTESE        : 13 16 17 18 37
-AND                  : 28
+ABREPARENTESE        : 4 5 6 12 13 19
+AND                  : 
 ASPAS                : 
-ATRIBUICAO           : 12
-CARACTER             : 
-CASO                 : 13
-CASOCONTRARIO        : 14
+ATRIBUICAO           : 7 8 9 10 11
+CARACTER             : 10 23
+CASO                 : 5 6
+CASOCONTRARIO        : 6
 CLOSE                : 1
 COMENTARIO           : 
-DIFERENTE            : 27
-DIV                  : 32
+DIFERENTE            : 
+DIV                  : 17
 DOISPONTOS           : 
-DUPLOIGUAL           : 26
-ENTRADA              : 17
-FECHAPARENTESE       : 13 16 17 18 37
-FIMBLOCO             : 13 14 16
+DUPLOIGUAL           : 
+ENTRADA              : 12
+FECHAPARENTESE       : 4 5 6 12 13 19
+FIMBLOCO             : 4 5 6 6
 FINALLINHA           : 
-INICIOBLOCO          : 13 14 16
-INTEIRO              : 35
-MAIOR                : 23
-MAIORIGUAL           : 25
-MENOR                : 22
-MENORIGUAL           : 24
-MULT                 : 31
+INICIOBLOCO          : 4 5 6 6
+INTEIRO              : 8 20
+MAIOR                : 
+MAIORIGUAL           : 
+MENOR                : 
+MENORIGUAL           : 
+MULT                 : 16
 NOT                  : 
-OR                   : 29
+OR                   : 
 PLAY                 : 1
 PONTO                : 
-PONTOVIRGULA         : 4 12 17 18
-REAL                 : 36
-REPETICAO            : 16
-RESERVADA            : 5
-RESTO                : 33
-SAIDA                : 18
-SOMA                 : 20
-SUB                  : 21
-VARIAVEL             : 4 12 17 34
+PONTOVIRGULA         : 7 8 9 10 11 12 13
+REAL                 : 9 21
+REPETICAO            : 4
+RESERVADA            : 
+RESTO                : 18
+SAIDA                : 13
+SOMA                 : 14
+SUB                  : 15
+VARIAVEL             : 7 8 9 10 11 11 12 22
 VIRGULA              : 
 error                : 
 numero_mf            : 
@@ -103,1546 +96,1094 @@ variavel_mf          :
 
 Nonterminals, with rules where they appear
 
-assinalar_estado     : 8
-declarativa          : 2
-declarativas         : 1 2
-estado               : 6
-estados              : 1 6 13 14 16
-expressao            : 12 13 16 18 20 21 22 23 24 25 26 27 28 29 37
-fator                : 30 31 32 33
-io_estado            : 11
-programa             : 0
-repeticao_estado     : 10
-se_estado            : 9
-senao_estado         : 13
-termo                : 19 20 21 22 23 24 25 26 27 28 29 31 32 33
-tipo                 : 4
-vazio                : 3 7 15
+expression           : 4 5 6 7 13 14 14 15 15 16 16 17 17 18 18 19
+program              : 0
+statement            : 2 3
+statements           : 1 2 4 5 6 6
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . programa
-    (1) programa -> . PLAY declarativas estados CLOSE
+    (0) S' -> . program
+    (1) program -> . PLAY statements CLOSE
 
     PLAY            shift and go to state 2
 
-    programa                       shift and go to state 1
+    program                        shift and go to state 1
 
 state 1
 
-    (0) S' -> programa .
+    (0) S' -> program .
 
 
 
 state 2
 
-    (1) programa -> PLAY . declarativas estados CLOSE
-    (2) declarativas -> . declarativas declarativa
-    (3) declarativas -> . vazio
-    (38) vazio -> .
+    (1) program -> PLAY . statements CLOSE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    RESERVADA       reduce using rule 38 (vazio -> .)
-    CLOSE           reduce using rule 38 (vazio -> .)
-    VARIAVEL        reduce using rule 38 (vazio -> .)
-    CASO            reduce using rule 38 (vazio -> .)
-    REPETICAO       reduce using rule 38 (vazio -> .)
-    ENTRADA         reduce using rule 38 (vazio -> .)
-    SAIDA           reduce using rule 38 (vazio -> .)
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
-    declarativas                   shift and go to state 3
-    vazio                          shift and go to state 4
+    statements                     shift and go to state 3
+    statement                      shift and go to state 4
 
 state 3
 
-    (1) programa -> PLAY declarativas . estados CLOSE
-    (2) declarativas -> declarativas . declarativa
-    (6) estados -> . estados estado
-    (7) estados -> . vazio
-    (4) declarativa -> . tipo VARIAVEL PONTOVIRGULA
-    (38) vazio -> .
-    (5) tipo -> . RESERVADA
+    (1) program -> PLAY statements . CLOSE
+    (2) statements -> statements . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    CLOSE           reduce using rule 38 (vazio -> .)
-    VARIAVEL        reduce using rule 38 (vazio -> .)
-    CASO            reduce using rule 38 (vazio -> .)
-    REPETICAO       reduce using rule 38 (vazio -> .)
-    ENTRADA         reduce using rule 38 (vazio -> .)
-    SAIDA           reduce using rule 38 (vazio -> .)
-    RESERVADA       shift and go to state 9
+    CLOSE           shift and go to state 10
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
-    estados                        shift and go to state 5
-    declarativa                    shift and go to state 6
-    vazio                          shift and go to state 7
-    tipo                           shift and go to state 8
+    statement                      shift and go to state 11
 
 state 4
 
-    (3) declarativas -> vazio .
+    (3) statements -> statement .
 
-    RESERVADA       reduce using rule 3 (declarativas -> vazio .)
-    CLOSE           reduce using rule 3 (declarativas -> vazio .)
-    VARIAVEL        reduce using rule 3 (declarativas -> vazio .)
-    CASO            reduce using rule 3 (declarativas -> vazio .)
-    REPETICAO       reduce using rule 3 (declarativas -> vazio .)
-    ENTRADA         reduce using rule 3 (declarativas -> vazio .)
-    SAIDA           reduce using rule 3 (declarativas -> vazio .)
+    CLOSE           reduce using rule 3 (statements -> statement .)
+    REPETICAO       reduce using rule 3 (statements -> statement .)
+    CASO            reduce using rule 3 (statements -> statement .)
+    VARIAVEL        reduce using rule 3 (statements -> statement .)
+    ENTRADA         reduce using rule 3 (statements -> statement .)
+    SAIDA           reduce using rule 3 (statements -> statement .)
+    FIMBLOCO        reduce using rule 3 (statements -> statement .)
 
 
 state 5
 
-    (1) programa -> PLAY declarativas estados . CLOSE
-    (6) estados -> estados . estado
-    (8) estado -> . assinalar_estado
-    (9) estado -> . se_estado
-    (10) estado -> . repeticao_estado
-    (11) estado -> . io_estado
-    (12) assinalar_estado -> . VARIAVEL ATRIBUICAO expressao PONTOVIRGULA
-    (13) se_estado -> . CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-    (16) repeticao_estado -> . REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-    (17) io_estado -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
-    (18) io_estado -> . SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA
+    (4) statement -> REPETICAO . ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
 
-    CLOSE           shift and go to state 10
-    VARIAVEL        shift and go to state 16
-    CASO            shift and go to state 17
-    REPETICAO       shift and go to state 18
-    ENTRADA         shift and go to state 19
-    SAIDA           shift and go to state 20
+    ABREPARENTESE   shift and go to state 12
 
-    estado                         shift and go to state 11
-    assinalar_estado               shift and go to state 12
-    se_estado                      shift and go to state 13
-    repeticao_estado               shift and go to state 14
-    io_estado                      shift and go to state 15
 
 state 6
 
-    (2) declarativas -> declarativas declarativa .
+    (5) statement -> CASO . ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> CASO . ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
 
-    RESERVADA       reduce using rule 2 (declarativas -> declarativas declarativa .)
-    CLOSE           reduce using rule 2 (declarativas -> declarativas declarativa .)
-    VARIAVEL        reduce using rule 2 (declarativas -> declarativas declarativa .)
-    CASO            reduce using rule 2 (declarativas -> declarativas declarativa .)
-    REPETICAO       reduce using rule 2 (declarativas -> declarativas declarativa .)
-    ENTRADA         reduce using rule 2 (declarativas -> declarativas declarativa .)
-    SAIDA           reduce using rule 2 (declarativas -> declarativas declarativa .)
+    ABREPARENTESE   shift and go to state 13
 
 
 state 7
 
-    (7) estados -> vazio .
+    (7) statement -> VARIAVEL . ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> VARIAVEL . ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> VARIAVEL . ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> VARIAVEL . ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> VARIAVEL . ATRIBUICAO VARIAVEL PONTOVIRGULA
 
-    CLOSE           reduce using rule 7 (estados -> vazio .)
-    VARIAVEL        reduce using rule 7 (estados -> vazio .)
-    CASO            reduce using rule 7 (estados -> vazio .)
-    REPETICAO       reduce using rule 7 (estados -> vazio .)
-    ENTRADA         reduce using rule 7 (estados -> vazio .)
-    SAIDA           reduce using rule 7 (estados -> vazio .)
-    FIMBLOCO        reduce using rule 7 (estados -> vazio .)
+    ATRIBUICAO      shift and go to state 14
 
 
 state 8
 
-    (4) declarativa -> tipo . VARIAVEL PONTOVIRGULA
+    (12) statement -> ENTRADA . ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
 
-    VARIAVEL        shift and go to state 21
+    ABREPARENTESE   shift and go to state 15
 
 
 state 9
 
-    (5) tipo -> RESERVADA .
+    (13) statement -> SAIDA . ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    VARIAVEL        reduce using rule 5 (tipo -> RESERVADA .)
+    ABREPARENTESE   shift and go to state 16
 
 
 state 10
 
-    (1) programa -> PLAY declarativas estados CLOSE .
+    (1) program -> PLAY statements CLOSE .
 
-    $end            reduce using rule 1 (programa -> PLAY declarativas estados CLOSE .)
+    $end            reduce using rule 1 (program -> PLAY statements CLOSE .)
 
 
 state 11
 
-    (6) estados -> estados estado .
+    (2) statements -> statements statement .
 
-    CLOSE           reduce using rule 6 (estados -> estados estado .)
-    VARIAVEL        reduce using rule 6 (estados -> estados estado .)
-    CASO            reduce using rule 6 (estados -> estados estado .)
-    REPETICAO       reduce using rule 6 (estados -> estados estado .)
-    ENTRADA         reduce using rule 6 (estados -> estados estado .)
-    SAIDA           reduce using rule 6 (estados -> estados estado .)
-    FIMBLOCO        reduce using rule 6 (estados -> estados estado .)
+    CLOSE           reduce using rule 2 (statements -> statements statement .)
+    REPETICAO       reduce using rule 2 (statements -> statements statement .)
+    CASO            reduce using rule 2 (statements -> statements statement .)
+    VARIAVEL        reduce using rule 2 (statements -> statements statement .)
+    ENTRADA         reduce using rule 2 (statements -> statements statement .)
+    SAIDA           reduce using rule 2 (statements -> statements statement .)
+    FIMBLOCO        reduce using rule 2 (statements -> statements statement .)
 
 
 state 12
 
-    (8) estado -> assinalar_estado .
+    (4) statement -> REPETICAO ABREPARENTESE . expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    CLOSE           reduce using rule 8 (estado -> assinalar_estado .)
-    VARIAVEL        reduce using rule 8 (estado -> assinalar_estado .)
-    CASO            reduce using rule 8 (estado -> assinalar_estado .)
-    REPETICAO       reduce using rule 8 (estado -> assinalar_estado .)
-    ENTRADA         reduce using rule 8 (estado -> assinalar_estado .)
-    SAIDA           reduce using rule 8 (estado -> assinalar_estado .)
-    FIMBLOCO        reduce using rule 8 (estado -> assinalar_estado .)
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 18
 
 state 13
 
-    (9) estado -> se_estado .
+    (5) statement -> CASO ABREPARENTESE . expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> CASO ABREPARENTESE . expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    CLOSE           reduce using rule 9 (estado -> se_estado .)
-    VARIAVEL        reduce using rule 9 (estado -> se_estado .)
-    CASO            reduce using rule 9 (estado -> se_estado .)
-    REPETICAO       reduce using rule 9 (estado -> se_estado .)
-    ENTRADA         reduce using rule 9 (estado -> se_estado .)
-    SAIDA           reduce using rule 9 (estado -> se_estado .)
-    FIMBLOCO        reduce using rule 9 (estado -> se_estado .)
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 23
 
 state 14
 
-    (10) estado -> repeticao_estado .
+    (7) statement -> VARIAVEL ATRIBUICAO . expression PONTOVIRGULA
+    (8) statement -> VARIAVEL ATRIBUICAO . INTEIRO PONTOVIRGULA
+    (9) statement -> VARIAVEL ATRIBUICAO . REAL PONTOVIRGULA
+    (10) statement -> VARIAVEL ATRIBUICAO . CARACTER PONTOVIRGULA
+    (11) statement -> VARIAVEL ATRIBUICAO . VARIAVEL PONTOVIRGULA
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    CLOSE           reduce using rule 10 (estado -> repeticao_estado .)
-    VARIAVEL        reduce using rule 10 (estado -> repeticao_estado .)
-    CASO            reduce using rule 10 (estado -> repeticao_estado .)
-    REPETICAO       reduce using rule 10 (estado -> repeticao_estado .)
-    ENTRADA         reduce using rule 10 (estado -> repeticao_estado .)
-    SAIDA           reduce using rule 10 (estado -> repeticao_estado .)
-    FIMBLOCO        reduce using rule 10 (estado -> repeticao_estado .)
+    INTEIRO         shift and go to state 26
+    REAL            shift and go to state 27
+    CARACTER        shift and go to state 28
+    VARIAVEL        shift and go to state 24
+    ABREPARENTESE   shift and go to state 17
 
+    expression                     shift and go to state 25
 
 state 15
 
-    (11) estado -> io_estado .
+    (12) statement -> ENTRADA ABREPARENTESE . VARIAVEL FECHAPARENTESE PONTOVIRGULA
 
-    CLOSE           reduce using rule 11 (estado -> io_estado .)
-    VARIAVEL        reduce using rule 11 (estado -> io_estado .)
-    CASO            reduce using rule 11 (estado -> io_estado .)
-    REPETICAO       reduce using rule 11 (estado -> io_estado .)
-    ENTRADA         reduce using rule 11 (estado -> io_estado .)
-    SAIDA           reduce using rule 11 (estado -> io_estado .)
-    FIMBLOCO        reduce using rule 11 (estado -> io_estado .)
+    VARIAVEL        shift and go to state 29
 
 
 state 16
 
-    (12) assinalar_estado -> VARIAVEL . ATRIBUICAO expressao PONTOVIRGULA
+    (13) statement -> SAIDA ABREPARENTESE . expression FECHAPARENTESE PONTOVIRGULA
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    ATRIBUICAO      shift and go to state 22
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 30
 
 state 17
 
-    (13) se_estado -> CASO . ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
+    (19) expression -> ABREPARENTESE . expression FECHAPARENTESE
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    ABREPARENTESE   shift and go to state 23
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 31
 
 state 18
 
-    (16) repeticao_estado -> REPETICAO . ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
+    (4) statement -> REPETICAO ABREPARENTESE expression . FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    ABREPARENTESE   shift and go to state 24
+    FECHAPARENTESE  shift and go to state 32
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
 
 state 19
 
-    (17) io_estado -> ENTRADA . ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (20) expression -> INTEIRO .
 
-    ABREPARENTESE   shift and go to state 25
+    FECHAPARENTESE  reduce using rule 20 (expression -> INTEIRO .)
+    SOMA            reduce using rule 20 (expression -> INTEIRO .)
+    SUB             reduce using rule 20 (expression -> INTEIRO .)
+    MULT            reduce using rule 20 (expression -> INTEIRO .)
+    DIV             reduce using rule 20 (expression -> INTEIRO .)
+    RESTO           reduce using rule 20 (expression -> INTEIRO .)
+    PONTOVIRGULA    reduce using rule 20 (expression -> INTEIRO .)
 
 
 state 20
 
-    (18) io_estado -> SAIDA . ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA
+    (21) expression -> REAL .
 
-    ABREPARENTESE   shift and go to state 26
+    FECHAPARENTESE  reduce using rule 21 (expression -> REAL .)
+    SOMA            reduce using rule 21 (expression -> REAL .)
+    SUB             reduce using rule 21 (expression -> REAL .)
+    MULT            reduce using rule 21 (expression -> REAL .)
+    DIV             reduce using rule 21 (expression -> REAL .)
+    RESTO           reduce using rule 21 (expression -> REAL .)
+    PONTOVIRGULA    reduce using rule 21 (expression -> REAL .)
 
 
 state 21
 
-    (4) declarativa -> tipo VARIAVEL . PONTOVIRGULA
+    (22) expression -> VARIAVEL .
 
-    PONTOVIRGULA    shift and go to state 27
+    FECHAPARENTESE  reduce using rule 22 (expression -> VARIAVEL .)
+    SOMA            reduce using rule 22 (expression -> VARIAVEL .)
+    SUB             reduce using rule 22 (expression -> VARIAVEL .)
+    MULT            reduce using rule 22 (expression -> VARIAVEL .)
+    DIV             reduce using rule 22 (expression -> VARIAVEL .)
+    RESTO           reduce using rule 22 (expression -> VARIAVEL .)
+    PONTOVIRGULA    reduce using rule 22 (expression -> VARIAVEL .)
 
 
 state 22
 
-    (12) assinalar_estado -> VARIAVEL ATRIBUICAO . expressao PONTOVIRGULA
-    (19) expressao -> . termo
-    (20) expressao -> . expressao SOMA termo
-    (21) expressao -> . expressao SUB termo
-    (22) expressao -> . expressao MENOR termo
-    (23) expressao -> . expressao MAIOR termo
-    (24) expressao -> . expressao MENORIGUAL termo
-    (25) expressao -> . expressao MAIORIGUAL termo
-    (26) expressao -> . expressao DUPLOIGUAL termo
-    (27) expressao -> . expressao DIFERENTE termo
-    (28) expressao -> . expressao AND termo
-    (29) expressao -> . expressao OR termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (23) expression -> CARACTER .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    FECHAPARENTESE  reduce using rule 23 (expression -> CARACTER .)
+    SOMA            reduce using rule 23 (expression -> CARACTER .)
+    SUB             reduce using rule 23 (expression -> CARACTER .)
+    MULT            reduce using rule 23 (expression -> CARACTER .)
+    DIV             reduce using rule 23 (expression -> CARACTER .)
+    RESTO           reduce using rule 23 (expression -> CARACTER .)
+    PONTOVIRGULA    reduce using rule 23 (expression -> CARACTER .)
 
-    expressao                      shift and go to state 29
-    termo                          shift and go to state 30
-    fator                          shift and go to state 31
 
 state 23
 
-    (13) se_estado -> CASO ABREPARENTESE . expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-    (19) expressao -> . termo
-    (20) expressao -> . expressao SOMA termo
-    (21) expressao -> . expressao SUB termo
-    (22) expressao -> . expressao MENOR termo
-    (23) expressao -> . expressao MAIOR termo
-    (24) expressao -> . expressao MENORIGUAL termo
-    (25) expressao -> . expressao MAIORIGUAL termo
-    (26) expressao -> . expressao DUPLOIGUAL termo
-    (27) expressao -> . expressao DIFERENTE termo
-    (28) expressao -> . expressao AND termo
-    (29) expressao -> . expressao OR termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (5) statement -> CASO ABREPARENTESE expression . FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> CASO ABREPARENTESE expression . FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    FECHAPARENTESE  shift and go to state 38
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
-    expressao                      shift and go to state 35
-    termo                          shift and go to state 30
-    fator                          shift and go to state 31
 
 state 24
 
-    (16) repeticao_estado -> REPETICAO ABREPARENTESE . expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-    (19) expressao -> . termo
-    (20) expressao -> . expressao SOMA termo
-    (21) expressao -> . expressao SUB termo
-    (22) expressao -> . expressao MENOR termo
-    (23) expressao -> . expressao MAIOR termo
-    (24) expressao -> . expressao MENORIGUAL termo
-    (25) expressao -> . expressao MAIORIGUAL termo
-    (26) expressao -> . expressao DUPLOIGUAL termo
-    (27) expressao -> . expressao DIFERENTE termo
-    (28) expressao -> . expressao AND termo
-    (29) expressao -> . expressao OR termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (11) statement -> VARIAVEL ATRIBUICAO VARIAVEL . PONTOVIRGULA
+    (22) expression -> VARIAVEL .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for PONTOVIRGULA resolved as shift
+    PONTOVIRGULA    shift and go to state 39
+    SOMA            reduce using rule 22 (expression -> VARIAVEL .)
+    SUB             reduce using rule 22 (expression -> VARIAVEL .)
+    MULT            reduce using rule 22 (expression -> VARIAVEL .)
+    DIV             reduce using rule 22 (expression -> VARIAVEL .)
+    RESTO           reduce using rule 22 (expression -> VARIAVEL .)
 
-    expressao                      shift and go to state 36
-    termo                          shift and go to state 30
-    fator                          shift and go to state 31
+  ! PONTOVIRGULA    [ reduce using rule 22 (expression -> VARIAVEL .) ]
+
 
 state 25
 
-    (17) io_estado -> ENTRADA ABREPARENTESE . VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (7) statement -> VARIAVEL ATRIBUICAO expression . PONTOVIRGULA
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 37
+    PONTOVIRGULA    shift and go to state 40
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
 
 state 26
 
-    (18) io_estado -> SAIDA ABREPARENTESE . expressao FECHAPARENTESE PONTOVIRGULA
-    (19) expressao -> . termo
-    (20) expressao -> . expressao SOMA termo
-    (21) expressao -> . expressao SUB termo
-    (22) expressao -> . expressao MENOR termo
-    (23) expressao -> . expressao MAIOR termo
-    (24) expressao -> . expressao MENORIGUAL termo
-    (25) expressao -> . expressao MAIORIGUAL termo
-    (26) expressao -> . expressao DUPLOIGUAL termo
-    (27) expressao -> . expressao DIFERENTE termo
-    (28) expressao -> . expressao AND termo
-    (29) expressao -> . expressao OR termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (8) statement -> VARIAVEL ATRIBUICAO INTEIRO . PONTOVIRGULA
+    (20) expression -> INTEIRO .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for PONTOVIRGULA resolved as shift
+    PONTOVIRGULA    shift and go to state 41
+    SOMA            reduce using rule 20 (expression -> INTEIRO .)
+    SUB             reduce using rule 20 (expression -> INTEIRO .)
+    MULT            reduce using rule 20 (expression -> INTEIRO .)
+    DIV             reduce using rule 20 (expression -> INTEIRO .)
+    RESTO           reduce using rule 20 (expression -> INTEIRO .)
 
-    expressao                      shift and go to state 38
-    termo                          shift and go to state 30
-    fator                          shift and go to state 31
+  ! PONTOVIRGULA    [ reduce using rule 20 (expression -> INTEIRO .) ]
+
 
 state 27
 
-    (4) declarativa -> tipo VARIAVEL PONTOVIRGULA .
+    (9) statement -> VARIAVEL ATRIBUICAO REAL . PONTOVIRGULA
+    (21) expression -> REAL .
 
-    RESERVADA       reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
-    CLOSE           reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
-    VARIAVEL        reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
-    CASO            reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
-    REPETICAO       reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
-    ENTRADA         reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
-    SAIDA           reduce using rule 4 (declarativa -> tipo VARIAVEL PONTOVIRGULA .)
+  ! shift/reduce conflict for PONTOVIRGULA resolved as shift
+    PONTOVIRGULA    shift and go to state 42
+    SOMA            reduce using rule 21 (expression -> REAL .)
+    SUB             reduce using rule 21 (expression -> REAL .)
+    MULT            reduce using rule 21 (expression -> REAL .)
+    DIV             reduce using rule 21 (expression -> REAL .)
+    RESTO           reduce using rule 21 (expression -> REAL .)
+
+  ! PONTOVIRGULA    [ reduce using rule 21 (expression -> REAL .) ]
 
 
 state 28
 
-    (34) fator -> VARIAVEL .
+    (10) statement -> VARIAVEL ATRIBUICAO CARACTER . PONTOVIRGULA
+    (23) expression -> CARACTER .
 
-    MULT            reduce using rule 34 (fator -> VARIAVEL .)
-    DIV             reduce using rule 34 (fator -> VARIAVEL .)
-    RESTO           reduce using rule 34 (fator -> VARIAVEL .)
-    PONTOVIRGULA    reduce using rule 34 (fator -> VARIAVEL .)
-    SOMA            reduce using rule 34 (fator -> VARIAVEL .)
-    SUB             reduce using rule 34 (fator -> VARIAVEL .)
-    MENOR           reduce using rule 34 (fator -> VARIAVEL .)
-    MAIOR           reduce using rule 34 (fator -> VARIAVEL .)
-    MENORIGUAL      reduce using rule 34 (fator -> VARIAVEL .)
-    MAIORIGUAL      reduce using rule 34 (fator -> VARIAVEL .)
-    DUPLOIGUAL      reduce using rule 34 (fator -> VARIAVEL .)
-    DIFERENTE       reduce using rule 34 (fator -> VARIAVEL .)
-    AND             reduce using rule 34 (fator -> VARIAVEL .)
-    OR              reduce using rule 34 (fator -> VARIAVEL .)
-    FECHAPARENTESE  reduce using rule 34 (fator -> VARIAVEL .)
+  ! shift/reduce conflict for PONTOVIRGULA resolved as shift
+    PONTOVIRGULA    shift and go to state 43
+    SOMA            reduce using rule 23 (expression -> CARACTER .)
+    SUB             reduce using rule 23 (expression -> CARACTER .)
+    MULT            reduce using rule 23 (expression -> CARACTER .)
+    DIV             reduce using rule 23 (expression -> CARACTER .)
+    RESTO           reduce using rule 23 (expression -> CARACTER .)
+
+  ! PONTOVIRGULA    [ reduce using rule 23 (expression -> CARACTER .) ]
 
 
 state 29
 
-    (12) assinalar_estado -> VARIAVEL ATRIBUICAO expressao . PONTOVIRGULA
-    (20) expressao -> expressao . SOMA termo
-    (21) expressao -> expressao . SUB termo
-    (22) expressao -> expressao . MENOR termo
-    (23) expressao -> expressao . MAIOR termo
-    (24) expressao -> expressao . MENORIGUAL termo
-    (25) expressao -> expressao . MAIORIGUAL termo
-    (26) expressao -> expressao . DUPLOIGUAL termo
-    (27) expressao -> expressao . DIFERENTE termo
-    (28) expressao -> expressao . AND termo
-    (29) expressao -> expressao . OR termo
+    (12) statement -> ENTRADA ABREPARENTESE VARIAVEL . FECHAPARENTESE PONTOVIRGULA
 
-    PONTOVIRGULA    shift and go to state 39
-    SOMA            shift and go to state 40
-    SUB             shift and go to state 41
-    MENOR           shift and go to state 42
-    MAIOR           shift and go to state 43
-    MENORIGUAL      shift and go to state 44
-    MAIORIGUAL      shift and go to state 45
-    DUPLOIGUAL      shift and go to state 46
-    DIFERENTE       shift and go to state 47
-    AND             shift and go to state 48
-    OR              shift and go to state 49
+    FECHAPARENTESE  shift and go to state 44
 
 
 state 30
 
-    (19) expressao -> termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
+    (13) statement -> SAIDA ABREPARENTESE expression . FECHAPARENTESE PONTOVIRGULA
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    PONTOVIRGULA    reduce using rule 19 (expressao -> termo .)
-    SOMA            reduce using rule 19 (expressao -> termo .)
-    SUB             reduce using rule 19 (expressao -> termo .)
-    MENOR           reduce using rule 19 (expressao -> termo .)
-    MAIOR           reduce using rule 19 (expressao -> termo .)
-    MENORIGUAL      reduce using rule 19 (expressao -> termo .)
-    MAIORIGUAL      reduce using rule 19 (expressao -> termo .)
-    DUPLOIGUAL      reduce using rule 19 (expressao -> termo .)
-    DIFERENTE       reduce using rule 19 (expressao -> termo .)
-    AND             reduce using rule 19 (expressao -> termo .)
-    OR              reduce using rule 19 (expressao -> termo .)
-    FECHAPARENTESE  reduce using rule 19 (expressao -> termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
+    FECHAPARENTESE  shift and go to state 45
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
 
 state 31
 
-    (30) termo -> fator .
+    (19) expression -> ABREPARENTESE expression . FECHAPARENTESE
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    MULT            reduce using rule 30 (termo -> fator .)
-    DIV             reduce using rule 30 (termo -> fator .)
-    RESTO           reduce using rule 30 (termo -> fator .)
-    PONTOVIRGULA    reduce using rule 30 (termo -> fator .)
-    SOMA            reduce using rule 30 (termo -> fator .)
-    SUB             reduce using rule 30 (termo -> fator .)
-    MENOR           reduce using rule 30 (termo -> fator .)
-    MAIOR           reduce using rule 30 (termo -> fator .)
-    MENORIGUAL      reduce using rule 30 (termo -> fator .)
-    MAIORIGUAL      reduce using rule 30 (termo -> fator .)
-    DUPLOIGUAL      reduce using rule 30 (termo -> fator .)
-    DIFERENTE       reduce using rule 30 (termo -> fator .)
-    AND             reduce using rule 30 (termo -> fator .)
-    OR              reduce using rule 30 (termo -> fator .)
-    FECHAPARENTESE  reduce using rule 30 (termo -> fator .)
+    FECHAPARENTESE  shift and go to state 46
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
 
 state 32
 
-    (35) fator -> INTEIRO .
+    (4) statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE . INICIOBLOCO statements FIMBLOCO
 
-    MULT            reduce using rule 35 (fator -> INTEIRO .)
-    DIV             reduce using rule 35 (fator -> INTEIRO .)
-    RESTO           reduce using rule 35 (fator -> INTEIRO .)
-    PONTOVIRGULA    reduce using rule 35 (fator -> INTEIRO .)
-    SOMA            reduce using rule 35 (fator -> INTEIRO .)
-    SUB             reduce using rule 35 (fator -> INTEIRO .)
-    MENOR           reduce using rule 35 (fator -> INTEIRO .)
-    MAIOR           reduce using rule 35 (fator -> INTEIRO .)
-    MENORIGUAL      reduce using rule 35 (fator -> INTEIRO .)
-    MAIORIGUAL      reduce using rule 35 (fator -> INTEIRO .)
-    DUPLOIGUAL      reduce using rule 35 (fator -> INTEIRO .)
-    DIFERENTE       reduce using rule 35 (fator -> INTEIRO .)
-    AND             reduce using rule 35 (fator -> INTEIRO .)
-    OR              reduce using rule 35 (fator -> INTEIRO .)
-    FECHAPARENTESE  reduce using rule 35 (fator -> INTEIRO .)
+    INICIOBLOCO     shift and go to state 47
 
 
 state 33
 
-    (36) fator -> REAL .
+    (14) expression -> expression SOMA . expression
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    MULT            reduce using rule 36 (fator -> REAL .)
-    DIV             reduce using rule 36 (fator -> REAL .)
-    RESTO           reduce using rule 36 (fator -> REAL .)
-    PONTOVIRGULA    reduce using rule 36 (fator -> REAL .)
-    SOMA            reduce using rule 36 (fator -> REAL .)
-    SUB             reduce using rule 36 (fator -> REAL .)
-    MENOR           reduce using rule 36 (fator -> REAL .)
-    MAIOR           reduce using rule 36 (fator -> REAL .)
-    MENORIGUAL      reduce using rule 36 (fator -> REAL .)
-    MAIORIGUAL      reduce using rule 36 (fator -> REAL .)
-    DUPLOIGUAL      reduce using rule 36 (fator -> REAL .)
-    DIFERENTE       reduce using rule 36 (fator -> REAL .)
-    AND             reduce using rule 36 (fator -> REAL .)
-    OR              reduce using rule 36 (fator -> REAL .)
-    FECHAPARENTESE  reduce using rule 36 (fator -> REAL .)
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 48
 
 state 34
 
-    (37) fator -> ABREPARENTESE . expressao FECHAPARENTESE
-    (19) expressao -> . termo
-    (20) expressao -> . expressao SOMA termo
-    (21) expressao -> . expressao SUB termo
-    (22) expressao -> . expressao MENOR termo
-    (23) expressao -> . expressao MAIOR termo
-    (24) expressao -> . expressao MENORIGUAL termo
-    (25) expressao -> . expressao MAIORIGUAL termo
-    (26) expressao -> . expressao DUPLOIGUAL termo
-    (27) expressao -> . expressao DIFERENTE termo
-    (28) expressao -> . expressao AND termo
-    (29) expressao -> . expressao OR termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (15) expression -> expression SUB . expression
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
-    expressao                      shift and go to state 53
-    termo                          shift and go to state 30
-    fator                          shift and go to state 31
+    expression                     shift and go to state 49
 
 state 35
 
-    (13) se_estado -> CASO ABREPARENTESE expressao . FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-    (20) expressao -> expressao . SOMA termo
-    (21) expressao -> expressao . SUB termo
-    (22) expressao -> expressao . MENOR termo
-    (23) expressao -> expressao . MAIOR termo
-    (24) expressao -> expressao . MENORIGUAL termo
-    (25) expressao -> expressao . MAIORIGUAL termo
-    (26) expressao -> expressao . DUPLOIGUAL termo
-    (27) expressao -> expressao . DIFERENTE termo
-    (28) expressao -> expressao . AND termo
-    (29) expressao -> expressao . OR termo
+    (16) expression -> expression MULT . expression
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    FECHAPARENTESE  shift and go to state 54
-    SOMA            shift and go to state 40
-    SUB             shift and go to state 41
-    MENOR           shift and go to state 42
-    MAIOR           shift and go to state 43
-    MENORIGUAL      shift and go to state 44
-    MAIORIGUAL      shift and go to state 45
-    DUPLOIGUAL      shift and go to state 46
-    DIFERENTE       shift and go to state 47
-    AND             shift and go to state 48
-    OR              shift and go to state 49
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 50
 
 state 36
 
-    (16) repeticao_estado -> REPETICAO ABREPARENTESE expressao . FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-    (20) expressao -> expressao . SOMA termo
-    (21) expressao -> expressao . SUB termo
-    (22) expressao -> expressao . MENOR termo
-    (23) expressao -> expressao . MAIOR termo
-    (24) expressao -> expressao . MENORIGUAL termo
-    (25) expressao -> expressao . MAIORIGUAL termo
-    (26) expressao -> expressao . DUPLOIGUAL termo
-    (27) expressao -> expressao . DIFERENTE termo
-    (28) expressao -> expressao . AND termo
-    (29) expressao -> expressao . OR termo
+    (17) expression -> expression DIV . expression
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    FECHAPARENTESE  shift and go to state 55
-    SOMA            shift and go to state 40
-    SUB             shift and go to state 41
-    MENOR           shift and go to state 42
-    MAIOR           shift and go to state 43
-    MENORIGUAL      shift and go to state 44
-    MAIORIGUAL      shift and go to state 45
-    DUPLOIGUAL      shift and go to state 46
-    DIFERENTE       shift and go to state 47
-    AND             shift and go to state 48
-    OR              shift and go to state 49
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 51
 
 state 37
 
-    (17) io_estado -> ENTRADA ABREPARENTESE VARIAVEL . FECHAPARENTESE PONTOVIRGULA
+    (18) expression -> expression RESTO . expression
+    (14) expression -> . expression SOMA expression
+    (15) expression -> . expression SUB expression
+    (16) expression -> . expression MULT expression
+    (17) expression -> . expression DIV expression
+    (18) expression -> . expression RESTO expression
+    (19) expression -> . ABREPARENTESE expression FECHAPARENTESE
+    (20) expression -> . INTEIRO
+    (21) expression -> . REAL
+    (22) expression -> . VARIAVEL
+    (23) expression -> . CARACTER
 
-    FECHAPARENTESE  shift and go to state 56
+    ABREPARENTESE   shift and go to state 17
+    INTEIRO         shift and go to state 19
+    REAL            shift and go to state 20
+    VARIAVEL        shift and go to state 21
+    CARACTER        shift and go to state 22
 
+    expression                     shift and go to state 52
 
 state 38
 
-    (18) io_estado -> SAIDA ABREPARENTESE expressao . FECHAPARENTESE PONTOVIRGULA
-    (20) expressao -> expressao . SOMA termo
-    (21) expressao -> expressao . SUB termo
-    (22) expressao -> expressao . MENOR termo
-    (23) expressao -> expressao . MAIOR termo
-    (24) expressao -> expressao . MENORIGUAL termo
-    (25) expressao -> expressao . MAIORIGUAL termo
-    (26) expressao -> expressao . DUPLOIGUAL termo
-    (27) expressao -> expressao . DIFERENTE termo
-    (28) expressao -> expressao . AND termo
-    (29) expressao -> expressao . OR termo
+    (5) statement -> CASO ABREPARENTESE expression FECHAPARENTESE . INICIOBLOCO statements FIMBLOCO
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE . INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
 
-    FECHAPARENTESE  shift and go to state 57
-    SOMA            shift and go to state 40
-    SUB             shift and go to state 41
-    MENOR           shift and go to state 42
-    MAIOR           shift and go to state 43
-    MENORIGUAL      shift and go to state 44
-    MAIORIGUAL      shift and go to state 45
-    DUPLOIGUAL      shift and go to state 46
-    DIFERENTE       shift and go to state 47
-    AND             shift and go to state 48
-    OR              shift and go to state 49
+    INICIOBLOCO     shift and go to state 53
 
 
 state 39
 
-    (12) assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .
+    (11) statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .
 
-    CLOSE           reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
-    VARIAVEL        reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
-    CASO            reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
-    REPETICAO       reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
-    ENTRADA         reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
-    SAIDA           reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
-    FIMBLOCO        reduce using rule 12 (assinalar_estado -> VARIAVEL ATRIBUICAO expressao PONTOVIRGULA .)
+    CLOSE           reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
+    REPETICAO       reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
+    CASO            reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
+    ENTRADA         reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
+    SAIDA           reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 11 (statement -> VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA .)
 
 
 state 40
 
-    (20) expressao -> expressao SOMA . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (7) statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    CLOSE           reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
+    REPETICAO       reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
+    CASO            reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
+    ENTRADA         reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
+    SAIDA           reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 7 (statement -> VARIAVEL ATRIBUICAO expression PONTOVIRGULA .)
 
-    termo                          shift and go to state 58
-    fator                          shift and go to state 31
 
 state 41
 
-    (21) expressao -> expressao SUB . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (8) statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    CLOSE           reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
+    REPETICAO       reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
+    CASO            reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
+    ENTRADA         reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
+    SAIDA           reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 8 (statement -> VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA .)
 
-    termo                          shift and go to state 59
-    fator                          shift and go to state 31
 
 state 42
 
-    (22) expressao -> expressao MENOR . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (9) statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    CLOSE           reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
+    REPETICAO       reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
+    CASO            reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
+    ENTRADA         reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
+    SAIDA           reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 9 (statement -> VARIAVEL ATRIBUICAO REAL PONTOVIRGULA .)
 
-    termo                          shift and go to state 60
-    fator                          shift and go to state 31
 
 state 43
 
-    (23) expressao -> expressao MAIOR . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (10) statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    CLOSE           reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
+    REPETICAO       reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
+    CASO            reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
+    ENTRADA         reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
+    SAIDA           reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 10 (statement -> VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA .)
 
-    termo                          shift and go to state 61
-    fator                          shift and go to state 31
 
 state 44
 
-    (24) expressao -> expressao MENORIGUAL . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (12) statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE . PONTOVIRGULA
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    PONTOVIRGULA    shift and go to state 54
 
-    termo                          shift and go to state 62
-    fator                          shift and go to state 31
 
 state 45
 
-    (25) expressao -> expressao MAIORIGUAL . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (13) statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE . PONTOVIRGULA
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    PONTOVIRGULA    shift and go to state 55
 
-    termo                          shift and go to state 63
-    fator                          shift and go to state 31
 
 state 46
 
-    (26) expressao -> expressao DUPLOIGUAL . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (19) expression -> ABREPARENTESE expression FECHAPARENTESE .
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    FECHAPARENTESE  reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
+    SOMA            reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
+    SUB             reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
+    MULT            reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
+    DIV             reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
+    RESTO           reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
+    PONTOVIRGULA    reduce using rule 19 (expression -> ABREPARENTESE expression FECHAPARENTESE .)
 
-    termo                          shift and go to state 64
-    fator                          shift and go to state 31
 
 state 47
 
-    (27) expressao -> expressao DIFERENTE . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (4) statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO . statements FIMBLOCO
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
-    termo                          shift and go to state 65
-    fator                          shift and go to state 31
+    statements                     shift and go to state 56
+    statement                      shift and go to state 4
 
 state 48
 
-    (28) expressao -> expressao AND . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (14) expression -> expression SOMA expression .
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for SOMA resolved as shift
+  ! shift/reduce conflict for SUB resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for RESTO resolved as shift
+    FECHAPARENTESE  reduce using rule 14 (expression -> expression SOMA expression .)
+    PONTOVIRGULA    reduce using rule 14 (expression -> expression SOMA expression .)
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
-    termo                          shift and go to state 66
-    fator                          shift and go to state 31
+  ! SOMA            [ reduce using rule 14 (expression -> expression SOMA expression .) ]
+  ! SUB             [ reduce using rule 14 (expression -> expression SOMA expression .) ]
+  ! MULT            [ reduce using rule 14 (expression -> expression SOMA expression .) ]
+  ! DIV             [ reduce using rule 14 (expression -> expression SOMA expression .) ]
+  ! RESTO           [ reduce using rule 14 (expression -> expression SOMA expression .) ]
+
 
 state 49
 
-    (29) expressao -> expressao OR . termo
-    (30) termo -> . fator
-    (31) termo -> . termo MULT fator
-    (32) termo -> . termo DIV fator
-    (33) termo -> . termo RESTO fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (15) expression -> expression SUB expression .
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for SOMA resolved as shift
+  ! shift/reduce conflict for SUB resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for RESTO resolved as shift
+    FECHAPARENTESE  reduce using rule 15 (expression -> expression SUB expression .)
+    PONTOVIRGULA    reduce using rule 15 (expression -> expression SUB expression .)
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
-    termo                          shift and go to state 67
-    fator                          shift and go to state 31
+  ! SOMA            [ reduce using rule 15 (expression -> expression SUB expression .) ]
+  ! SUB             [ reduce using rule 15 (expression -> expression SUB expression .) ]
+  ! MULT            [ reduce using rule 15 (expression -> expression SUB expression .) ]
+  ! DIV             [ reduce using rule 15 (expression -> expression SUB expression .) ]
+  ! RESTO           [ reduce using rule 15 (expression -> expression SUB expression .) ]
+
 
 state 50
 
-    (31) termo -> termo MULT . fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (16) expression -> expression MULT expression .
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for SOMA resolved as shift
+  ! shift/reduce conflict for SUB resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for RESTO resolved as shift
+    FECHAPARENTESE  reduce using rule 16 (expression -> expression MULT expression .)
+    PONTOVIRGULA    reduce using rule 16 (expression -> expression MULT expression .)
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
-    fator                          shift and go to state 68
+  ! SOMA            [ reduce using rule 16 (expression -> expression MULT expression .) ]
+  ! SUB             [ reduce using rule 16 (expression -> expression MULT expression .) ]
+  ! MULT            [ reduce using rule 16 (expression -> expression MULT expression .) ]
+  ! DIV             [ reduce using rule 16 (expression -> expression MULT expression .) ]
+  ! RESTO           [ reduce using rule 16 (expression -> expression MULT expression .) ]
+
 
 state 51
 
-    (32) termo -> termo DIV . fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (17) expression -> expression DIV expression .
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for SOMA resolved as shift
+  ! shift/reduce conflict for SUB resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for RESTO resolved as shift
+    FECHAPARENTESE  reduce using rule 17 (expression -> expression DIV expression .)
+    PONTOVIRGULA    reduce using rule 17 (expression -> expression DIV expression .)
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
-    fator                          shift and go to state 69
+  ! SOMA            [ reduce using rule 17 (expression -> expression DIV expression .) ]
+  ! SUB             [ reduce using rule 17 (expression -> expression DIV expression .) ]
+  ! MULT            [ reduce using rule 17 (expression -> expression DIV expression .) ]
+  ! DIV             [ reduce using rule 17 (expression -> expression DIV expression .) ]
+  ! RESTO           [ reduce using rule 17 (expression -> expression DIV expression .) ]
+
 
 state 52
 
-    (33) termo -> termo RESTO . fator
-    (34) fator -> . VARIAVEL
-    (35) fator -> . INTEIRO
-    (36) fator -> . REAL
-    (37) fator -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expression -> expression RESTO expression .
+    (14) expression -> expression . SOMA expression
+    (15) expression -> expression . SUB expression
+    (16) expression -> expression . MULT expression
+    (17) expression -> expression . DIV expression
+    (18) expression -> expression . RESTO expression
 
-    VARIAVEL        shift and go to state 28
-    INTEIRO         shift and go to state 32
-    REAL            shift and go to state 33
-    ABREPARENTESE   shift and go to state 34
+  ! shift/reduce conflict for SOMA resolved as shift
+  ! shift/reduce conflict for SUB resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for RESTO resolved as shift
+    FECHAPARENTESE  reduce using rule 18 (expression -> expression RESTO expression .)
+    PONTOVIRGULA    reduce using rule 18 (expression -> expression RESTO expression .)
+    SOMA            shift and go to state 33
+    SUB             shift and go to state 34
+    MULT            shift and go to state 35
+    DIV             shift and go to state 36
+    RESTO           shift and go to state 37
 
-    fator                          shift and go to state 70
+  ! SOMA            [ reduce using rule 18 (expression -> expression RESTO expression .) ]
+  ! SUB             [ reduce using rule 18 (expression -> expression RESTO expression .) ]
+  ! MULT            [ reduce using rule 18 (expression -> expression RESTO expression .) ]
+  ! DIV             [ reduce using rule 18 (expression -> expression RESTO expression .) ]
+  ! RESTO           [ reduce using rule 18 (expression -> expression RESTO expression .) ]
+
 
 state 53
 
-    (37) fator -> ABREPARENTESE expressao . FECHAPARENTESE
-    (20) expressao -> expressao . SOMA termo
-    (21) expressao -> expressao . SUB termo
-    (22) expressao -> expressao . MENOR termo
-    (23) expressao -> expressao . MAIOR termo
-    (24) expressao -> expressao . MENORIGUAL termo
-    (25) expressao -> expressao . MAIORIGUAL termo
-    (26) expressao -> expressao . DUPLOIGUAL termo
-    (27) expressao -> expressao . DIFERENTE termo
-    (28) expressao -> expressao . AND termo
-    (29) expressao -> expressao . OR termo
+    (5) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO . statements FIMBLOCO
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO . statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    FECHAPARENTESE  shift and go to state 71
-    SOMA            shift and go to state 40
-    SUB             shift and go to state 41
-    MENOR           shift and go to state 42
-    MAIOR           shift and go to state 43
-    MENORIGUAL      shift and go to state 44
-    MAIORIGUAL      shift and go to state 45
-    DUPLOIGUAL      shift and go to state 46
-    DIFERENTE       shift and go to state 47
-    AND             shift and go to state 48
-    OR              shift and go to state 49
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
+    statements                     shift and go to state 57
+    statement                      shift and go to state 4
 
 state 54
 
-    (13) se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE . INICIOBLOCO estados FIMBLOCO senao_estado
+    (12) statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .
 
-    INICIOBLOCO     shift and go to state 72
+    CLOSE           reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
+    REPETICAO       reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
+    CASO            reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
+    ENTRADA         reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
+    SAIDA           reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 12 (statement -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
 
 
 state 55
 
-    (16) repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE . INICIOBLOCO estados FIMBLOCO
+    (13) statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .
 
-    INICIOBLOCO     shift and go to state 73
+    CLOSE           reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
+    REPETICAO       reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
+    CASO            reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
+    VARIAVEL        reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
+    ENTRADA         reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
+    SAIDA           reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
+    FIMBLOCO        reduce using rule 13 (statement -> SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA .)
 
 
 state 56
 
-    (17) io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE . PONTOVIRGULA
+    (4) statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements . FIMBLOCO
+    (2) statements -> statements . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    PONTOVIRGULA    shift and go to state 74
+    FIMBLOCO        shift and go to state 58
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
+    statement                      shift and go to state 11
 
 state 57
 
-    (18) io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE . PONTOVIRGULA
+    (5) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements . FIMBLOCO
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements . FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (2) statements -> statements . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    PONTOVIRGULA    shift and go to state 75
+    FIMBLOCO        shift and go to state 59
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
+    statement                      shift and go to state 11
 
 state 58
 
-    (20) expressao -> expressao SOMA termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
+    (4) statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .
 
-    PONTOVIRGULA    reduce using rule 20 (expressao -> expressao SOMA termo .)
-    SOMA            reduce using rule 20 (expressao -> expressao SOMA termo .)
-    SUB             reduce using rule 20 (expressao -> expressao SOMA termo .)
-    MENOR           reduce using rule 20 (expressao -> expressao SOMA termo .)
-    MAIOR           reduce using rule 20 (expressao -> expressao SOMA termo .)
-    MENORIGUAL      reduce using rule 20 (expressao -> expressao SOMA termo .)
-    MAIORIGUAL      reduce using rule 20 (expressao -> expressao SOMA termo .)
-    DUPLOIGUAL      reduce using rule 20 (expressao -> expressao SOMA termo .)
-    DIFERENTE       reduce using rule 20 (expressao -> expressao SOMA termo .)
-    AND             reduce using rule 20 (expressao -> expressao SOMA termo .)
-    OR              reduce using rule 20 (expressao -> expressao SOMA termo .)
-    FECHAPARENTESE  reduce using rule 20 (expressao -> expressao SOMA termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
+    CLOSE           reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    REPETICAO       reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    CASO            reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    VARIAVEL        reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    ENTRADA         reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    SAIDA           reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    FIMBLOCO        reduce using rule 4 (statement -> REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
 
 
 state 59
 
-    (21) expressao -> expressao SUB termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
+    (5) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO . CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
 
-    PONTOVIRGULA    reduce using rule 21 (expressao -> expressao SUB termo .)
-    SOMA            reduce using rule 21 (expressao -> expressao SUB termo .)
-    SUB             reduce using rule 21 (expressao -> expressao SUB termo .)
-    MENOR           reduce using rule 21 (expressao -> expressao SUB termo .)
-    MAIOR           reduce using rule 21 (expressao -> expressao SUB termo .)
-    MENORIGUAL      reduce using rule 21 (expressao -> expressao SUB termo .)
-    MAIORIGUAL      reduce using rule 21 (expressao -> expressao SUB termo .)
-    DUPLOIGUAL      reduce using rule 21 (expressao -> expressao SUB termo .)
-    DIFERENTE       reduce using rule 21 (expressao -> expressao SUB termo .)
-    AND             reduce using rule 21 (expressao -> expressao SUB termo .)
-    OR              reduce using rule 21 (expressao -> expressao SUB termo .)
-    FECHAPARENTESE  reduce using rule 21 (expressao -> expressao SUB termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
+    CLOSE           reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    REPETICAO       reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    CASO            reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    VARIAVEL        reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    ENTRADA         reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    SAIDA           reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    FIMBLOCO        reduce using rule 5 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO .)
+    CASOCONTRARIO   shift and go to state 60
 
 
 state 60
 
-    (22) expressao -> expressao MENOR termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO . INICIOBLOCO statements FIMBLOCO
 
-    PONTOVIRGULA    reduce using rule 22 (expressao -> expressao MENOR termo .)
-    SOMA            reduce using rule 22 (expressao -> expressao MENOR termo .)
-    SUB             reduce using rule 22 (expressao -> expressao MENOR termo .)
-    MENOR           reduce using rule 22 (expressao -> expressao MENOR termo .)
-    MAIOR           reduce using rule 22 (expressao -> expressao MENOR termo .)
-    MENORIGUAL      reduce using rule 22 (expressao -> expressao MENOR termo .)
-    MAIORIGUAL      reduce using rule 22 (expressao -> expressao MENOR termo .)
-    DUPLOIGUAL      reduce using rule 22 (expressao -> expressao MENOR termo .)
-    DIFERENTE       reduce using rule 22 (expressao -> expressao MENOR termo .)
-    AND             reduce using rule 22 (expressao -> expressao MENOR termo .)
-    OR              reduce using rule 22 (expressao -> expressao MENOR termo .)
-    FECHAPARENTESE  reduce using rule 22 (expressao -> expressao MENOR termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
+    INICIOBLOCO     shift and go to state 61
 
 
 state 61
 
-    (23) expressao -> expressao MAIOR termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO . statements FIMBLOCO
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    PONTOVIRGULA    reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    SOMA            reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    SUB             reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    MENOR           reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    MAIOR           reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    MENORIGUAL      reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    MAIORIGUAL      reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    DUPLOIGUAL      reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    DIFERENTE       reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    AND             reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    OR              reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    FECHAPARENTESE  reduce using rule 23 (expressao -> expressao MAIOR termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
+    statements                     shift and go to state 62
+    statement                      shift and go to state 4
 
 state 62
 
-    (24) expressao -> expressao MENORIGUAL termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements . FIMBLOCO
+    (2) statements -> statements . statement
+    (4) statement -> . REPETICAO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (5) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO
+    (6) statement -> . CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO
+    (7) statement -> . VARIAVEL ATRIBUICAO expression PONTOVIRGULA
+    (8) statement -> . VARIAVEL ATRIBUICAO INTEIRO PONTOVIRGULA
+    (9) statement -> . VARIAVEL ATRIBUICAO REAL PONTOVIRGULA
+    (10) statement -> . VARIAVEL ATRIBUICAO CARACTER PONTOVIRGULA
+    (11) statement -> . VARIAVEL ATRIBUICAO VARIAVEL PONTOVIRGULA
+    (12) statement -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
+    (13) statement -> . SAIDA ABREPARENTESE expression FECHAPARENTESE PONTOVIRGULA
 
-    PONTOVIRGULA    reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    SOMA            reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    SUB             reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    MENOR           reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    MAIOR           reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    MENORIGUAL      reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    MAIORIGUAL      reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    DUPLOIGUAL      reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    DIFERENTE       reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    AND             reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    OR              reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    FECHAPARENTESE  reduce using rule 24 (expressao -> expressao MENORIGUAL termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
+    FIMBLOCO        shift and go to state 63
+    REPETICAO       shift and go to state 5
+    CASO            shift and go to state 6
+    VARIAVEL        shift and go to state 7
+    ENTRADA         shift and go to state 8
+    SAIDA           shift and go to state 9
 
+    statement                      shift and go to state 11
 
 state 63
 
-    (25) expressao -> expressao MAIORIGUAL termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
-
-    PONTOVIRGULA    reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    SOMA            reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    SUB             reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    MENOR           reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    MAIOR           reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    MENORIGUAL      reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    MAIORIGUAL      reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    DUPLOIGUAL      reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    DIFERENTE       reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    AND             reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    OR              reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    FECHAPARENTESE  reduce using rule 25 (expressao -> expressao MAIORIGUAL termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
-
-
-state 64
-
-    (26) expressao -> expressao DUPLOIGUAL termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
-
-    PONTOVIRGULA    reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    SOMA            reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    SUB             reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    MENOR           reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    MAIOR           reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    MENORIGUAL      reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    MAIORIGUAL      reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    DUPLOIGUAL      reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    DIFERENTE       reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    AND             reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    OR              reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    FECHAPARENTESE  reduce using rule 26 (expressao -> expressao DUPLOIGUAL termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
-
-
-state 65
-
-    (27) expressao -> expressao DIFERENTE termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
-
-    PONTOVIRGULA    reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    SOMA            reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    SUB             reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    MENOR           reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    MAIOR           reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    MENORIGUAL      reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    MAIORIGUAL      reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    DUPLOIGUAL      reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    DIFERENTE       reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    AND             reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    OR              reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    FECHAPARENTESE  reduce using rule 27 (expressao -> expressao DIFERENTE termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
-
-
-state 66
-
-    (28) expressao -> expressao AND termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
-
-    PONTOVIRGULA    reduce using rule 28 (expressao -> expressao AND termo .)
-    SOMA            reduce using rule 28 (expressao -> expressao AND termo .)
-    SUB             reduce using rule 28 (expressao -> expressao AND termo .)
-    MENOR           reduce using rule 28 (expressao -> expressao AND termo .)
-    MAIOR           reduce using rule 28 (expressao -> expressao AND termo .)
-    MENORIGUAL      reduce using rule 28 (expressao -> expressao AND termo .)
-    MAIORIGUAL      reduce using rule 28 (expressao -> expressao AND termo .)
-    DUPLOIGUAL      reduce using rule 28 (expressao -> expressao AND termo .)
-    DIFERENTE       reduce using rule 28 (expressao -> expressao AND termo .)
-    AND             reduce using rule 28 (expressao -> expressao AND termo .)
-    OR              reduce using rule 28 (expressao -> expressao AND termo .)
-    FECHAPARENTESE  reduce using rule 28 (expressao -> expressao AND termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
-
-
-state 67
-
-    (29) expressao -> expressao OR termo .
-    (31) termo -> termo . MULT fator
-    (32) termo -> termo . DIV fator
-    (33) termo -> termo . RESTO fator
-
-    PONTOVIRGULA    reduce using rule 29 (expressao -> expressao OR termo .)
-    SOMA            reduce using rule 29 (expressao -> expressao OR termo .)
-    SUB             reduce using rule 29 (expressao -> expressao OR termo .)
-    MENOR           reduce using rule 29 (expressao -> expressao OR termo .)
-    MAIOR           reduce using rule 29 (expressao -> expressao OR termo .)
-    MENORIGUAL      reduce using rule 29 (expressao -> expressao OR termo .)
-    MAIORIGUAL      reduce using rule 29 (expressao -> expressao OR termo .)
-    DUPLOIGUAL      reduce using rule 29 (expressao -> expressao OR termo .)
-    DIFERENTE       reduce using rule 29 (expressao -> expressao OR termo .)
-    AND             reduce using rule 29 (expressao -> expressao OR termo .)
-    OR              reduce using rule 29 (expressao -> expressao OR termo .)
-    FECHAPARENTESE  reduce using rule 29 (expressao -> expressao OR termo .)
-    MULT            shift and go to state 50
-    DIV             shift and go to state 51
-    RESTO           shift and go to state 52
-
-
-state 68
-
-    (31) termo -> termo MULT fator .
-
-    MULT            reduce using rule 31 (termo -> termo MULT fator .)
-    DIV             reduce using rule 31 (termo -> termo MULT fator .)
-    RESTO           reduce using rule 31 (termo -> termo MULT fator .)
-    PONTOVIRGULA    reduce using rule 31 (termo -> termo MULT fator .)
-    SOMA            reduce using rule 31 (termo -> termo MULT fator .)
-    SUB             reduce using rule 31 (termo -> termo MULT fator .)
-    MENOR           reduce using rule 31 (termo -> termo MULT fator .)
-    MAIOR           reduce using rule 31 (termo -> termo MULT fator .)
-    MENORIGUAL      reduce using rule 31 (termo -> termo MULT fator .)
-    MAIORIGUAL      reduce using rule 31 (termo -> termo MULT fator .)
-    DUPLOIGUAL      reduce using rule 31 (termo -> termo MULT fator .)
-    DIFERENTE       reduce using rule 31 (termo -> termo MULT fator .)
-    AND             reduce using rule 31 (termo -> termo MULT fator .)
-    OR              reduce using rule 31 (termo -> termo MULT fator .)
-    FECHAPARENTESE  reduce using rule 31 (termo -> termo MULT fator .)
-
-
-state 69
-
-    (32) termo -> termo DIV fator .
-
-    MULT            reduce using rule 32 (termo -> termo DIV fator .)
-    DIV             reduce using rule 32 (termo -> termo DIV fator .)
-    RESTO           reduce using rule 32 (termo -> termo DIV fator .)
-    PONTOVIRGULA    reduce using rule 32 (termo -> termo DIV fator .)
-    SOMA            reduce using rule 32 (termo -> termo DIV fator .)
-    SUB             reduce using rule 32 (termo -> termo DIV fator .)
-    MENOR           reduce using rule 32 (termo -> termo DIV fator .)
-    MAIOR           reduce using rule 32 (termo -> termo DIV fator .)
-    MENORIGUAL      reduce using rule 32 (termo -> termo DIV fator .)
-    MAIORIGUAL      reduce using rule 32 (termo -> termo DIV fator .)
-    DUPLOIGUAL      reduce using rule 32 (termo -> termo DIV fator .)
-    DIFERENTE       reduce using rule 32 (termo -> termo DIV fator .)
-    AND             reduce using rule 32 (termo -> termo DIV fator .)
-    OR              reduce using rule 32 (termo -> termo DIV fator .)
-    FECHAPARENTESE  reduce using rule 32 (termo -> termo DIV fator .)
-
-
-state 70
-
-    (33) termo -> termo RESTO fator .
-
-    MULT            reduce using rule 33 (termo -> termo RESTO fator .)
-    DIV             reduce using rule 33 (termo -> termo RESTO fator .)
-    RESTO           reduce using rule 33 (termo -> termo RESTO fator .)
-    PONTOVIRGULA    reduce using rule 33 (termo -> termo RESTO fator .)
-    SOMA            reduce using rule 33 (termo -> termo RESTO fator .)
-    SUB             reduce using rule 33 (termo -> termo RESTO fator .)
-    MENOR           reduce using rule 33 (termo -> termo RESTO fator .)
-    MAIOR           reduce using rule 33 (termo -> termo RESTO fator .)
-    MENORIGUAL      reduce using rule 33 (termo -> termo RESTO fator .)
-    MAIORIGUAL      reduce using rule 33 (termo -> termo RESTO fator .)
-    DUPLOIGUAL      reduce using rule 33 (termo -> termo RESTO fator .)
-    DIFERENTE       reduce using rule 33 (termo -> termo RESTO fator .)
-    AND             reduce using rule 33 (termo -> termo RESTO fator .)
-    OR              reduce using rule 33 (termo -> termo RESTO fator .)
-    FECHAPARENTESE  reduce using rule 33 (termo -> termo RESTO fator .)
-
-
-state 71
-
-    (37) fator -> ABREPARENTESE expressao FECHAPARENTESE .
-
-    MULT            reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    DIV             reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    RESTO           reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    PONTOVIRGULA    reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    SOMA            reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    SUB             reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    MENOR           reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    MAIOR           reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    MENORIGUAL      reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    MAIORIGUAL      reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    DUPLOIGUAL      reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    DIFERENTE       reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    AND             reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    OR              reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-    FECHAPARENTESE  reduce using rule 37 (fator -> ABREPARENTESE expressao FECHAPARENTESE .)
-
-
-state 72
-
-    (13) se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO . estados FIMBLOCO senao_estado
-    (6) estados -> . estados estado
-    (7) estados -> . vazio
-    (38) vazio -> .
-
-    FIMBLOCO        reduce using rule 38 (vazio -> .)
-    VARIAVEL        reduce using rule 38 (vazio -> .)
-    CASO            reduce using rule 38 (vazio -> .)
-    REPETICAO       reduce using rule 38 (vazio -> .)
-    ENTRADA         reduce using rule 38 (vazio -> .)
-    SAIDA           reduce using rule 38 (vazio -> .)
-
-    estados                        shift and go to state 76
-    vazio                          shift and go to state 7
-
-state 73
-
-    (16) repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO . estados FIMBLOCO
-    (6) estados -> . estados estado
-    (7) estados -> . vazio
-    (38) vazio -> .
-
-    FIMBLOCO        reduce using rule 38 (vazio -> .)
-    VARIAVEL        reduce using rule 38 (vazio -> .)
-    CASO            reduce using rule 38 (vazio -> .)
-    REPETICAO       reduce using rule 38 (vazio -> .)
-    ENTRADA         reduce using rule 38 (vazio -> .)
-    SAIDA           reduce using rule 38 (vazio -> .)
-
-    estados                        shift and go to state 77
-    vazio                          shift and go to state 7
-
-state 74
-
-    (17) io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .
-
-    CLOSE           reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-    VARIAVEL        reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-    CASO            reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-    REPETICAO       reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-    ENTRADA         reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-    SAIDA           reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-    FIMBLOCO        reduce using rule 17 (io_estado -> ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA .)
-
-
-state 75
-
-    (18) io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .
-
-    CLOSE           reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-    VARIAVEL        reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-    CASO            reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-    REPETICAO       reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-    ENTRADA         reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-    SAIDA           reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-    FIMBLOCO        reduce using rule 18 (io_estado -> SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA .)
-
-
-state 76
-
-    (13) se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados . FIMBLOCO senao_estado
-    (6) estados -> estados . estado
-    (8) estado -> . assinalar_estado
-    (9) estado -> . se_estado
-    (10) estado -> . repeticao_estado
-    (11) estado -> . io_estado
-    (12) assinalar_estado -> . VARIAVEL ATRIBUICAO expressao PONTOVIRGULA
-    (13) se_estado -> . CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-    (16) repeticao_estado -> . REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-    (17) io_estado -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
-    (18) io_estado -> . SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA
-
-    FIMBLOCO        shift and go to state 78
-    VARIAVEL        shift and go to state 16
-    CASO            shift and go to state 17
-    REPETICAO       shift and go to state 18
-    ENTRADA         shift and go to state 19
-    SAIDA           shift and go to state 20
-
-    estado                         shift and go to state 11
-    assinalar_estado               shift and go to state 12
-    se_estado                      shift and go to state 13
-    repeticao_estado               shift and go to state 14
-    io_estado                      shift and go to state 15
-
-state 77
-
-    (16) repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados . FIMBLOCO
-    (6) estados -> estados . estado
-    (8) estado -> . assinalar_estado
-    (9) estado -> . se_estado
-    (10) estado -> . repeticao_estado
-    (11) estado -> . io_estado
-    (12) assinalar_estado -> . VARIAVEL ATRIBUICAO expressao PONTOVIRGULA
-    (13) se_estado -> . CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-    (16) repeticao_estado -> . REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-    (17) io_estado -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
-    (18) io_estado -> . SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA
-
-    FIMBLOCO        shift and go to state 79
-    VARIAVEL        shift and go to state 16
-    CASO            shift and go to state 17
-    REPETICAO       shift and go to state 18
-    ENTRADA         shift and go to state 19
-    SAIDA           shift and go to state 20
-
-    estado                         shift and go to state 11
-    assinalar_estado               shift and go to state 12
-    se_estado                      shift and go to state 13
-    repeticao_estado               shift and go to state 14
-    io_estado                      shift and go to state 15
-
-state 78
-
-    (13) se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO . senao_estado
-    (14) senao_estado -> . CASOCONTRARIO INICIOBLOCO estados FIMBLOCO
-    (15) senao_estado -> . vazio
-    (38) vazio -> .
-
-    CASOCONTRARIO   shift and go to state 81
-    CLOSE           reduce using rule 38 (vazio -> .)
-    VARIAVEL        reduce using rule 38 (vazio -> .)
-    CASO            reduce using rule 38 (vazio -> .)
-    REPETICAO       reduce using rule 38 (vazio -> .)
-    ENTRADA         reduce using rule 38 (vazio -> .)
-    SAIDA           reduce using rule 38 (vazio -> .)
-    FIMBLOCO        reduce using rule 38 (vazio -> .)
-
-    senao_estado                   shift and go to state 80
-    vazio                          shift and go to state 82
-
-state 79
-
-    (16) repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .
-
-    CLOSE           reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-    VARIAVEL        reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-    CASO            reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-    REPETICAO       reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-    ENTRADA         reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-    SAIDA           reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-    FIMBLOCO        reduce using rule 16 (repeticao_estado -> REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO .)
-
-
-state 80
-
-    (13) se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .
-
-    CLOSE           reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-    VARIAVEL        reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-    CASO            reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-    REPETICAO       reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-    ENTRADA         reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-    SAIDA           reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-    FIMBLOCO        reduce using rule 13 (se_estado -> CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado .)
-
-
-state 81
-
-    (14) senao_estado -> CASOCONTRARIO . INICIOBLOCO estados FIMBLOCO
-
-    INICIOBLOCO     shift and go to state 83
-
-
-state 82
-
-    (15) senao_estado -> vazio .
-
-    CLOSE           reduce using rule 15 (senao_estado -> vazio .)
-    VARIAVEL        reduce using rule 15 (senao_estado -> vazio .)
-    CASO            reduce using rule 15 (senao_estado -> vazio .)
-    REPETICAO       reduce using rule 15 (senao_estado -> vazio .)
-    ENTRADA         reduce using rule 15 (senao_estado -> vazio .)
-    SAIDA           reduce using rule 15 (senao_estado -> vazio .)
-    FIMBLOCO        reduce using rule 15 (senao_estado -> vazio .)
-
-
-state 83
-
-    (14) senao_estado -> CASOCONTRARIO INICIOBLOCO . estados FIMBLOCO
-    (6) estados -> . estados estado
-    (7) estados -> . vazio
-    (38) vazio -> .
-
-    FIMBLOCO        reduce using rule 38 (vazio -> .)
-    VARIAVEL        reduce using rule 38 (vazio -> .)
-    CASO            reduce using rule 38 (vazio -> .)
-    REPETICAO       reduce using rule 38 (vazio -> .)
-    ENTRADA         reduce using rule 38 (vazio -> .)
-    SAIDA           reduce using rule 38 (vazio -> .)
-
-    estados                        shift and go to state 84
-    vazio                          shift and go to state 7
-
-state 84
-
-    (14) senao_estado -> CASOCONTRARIO INICIOBLOCO estados . FIMBLOCO
-    (6) estados -> estados . estado
-    (8) estado -> . assinalar_estado
-    (9) estado -> . se_estado
-    (10) estado -> . repeticao_estado
-    (11) estado -> . io_estado
-    (12) assinalar_estado -> . VARIAVEL ATRIBUICAO expressao PONTOVIRGULA
-    (13) se_estado -> . CASO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO senao_estado
-    (16) repeticao_estado -> . REPETICAO ABREPARENTESE expressao FECHAPARENTESE INICIOBLOCO estados FIMBLOCO
-    (17) io_estado -> . ENTRADA ABREPARENTESE VARIAVEL FECHAPARENTESE PONTOVIRGULA
-    (18) io_estado -> . SAIDA ABREPARENTESE expressao FECHAPARENTESE PONTOVIRGULA
-
-    FIMBLOCO        shift and go to state 85
-    VARIAVEL        shift and go to state 16
-    CASO            shift and go to state 17
-    REPETICAO       shift and go to state 18
-    ENTRADA         shift and go to state 19
-    SAIDA           shift and go to state 20
-
-    estado                         shift and go to state 11
-    assinalar_estado               shift and go to state 12
-    se_estado                      shift and go to state 13
-    repeticao_estado               shift and go to state 14
-    io_estado                      shift and go to state 15
-
-state 85
-
-    (14) senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .
-
-    CLOSE           reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-    VARIAVEL        reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-    CASO            reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-    REPETICAO       reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-    ENTRADA         reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-    SAIDA           reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-    FIMBLOCO        reduce using rule 14 (senao_estado -> CASOCONTRARIO INICIOBLOCO estados FIMBLOCO .)
-
+    (6) statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .
+
+    CLOSE           reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+    REPETICAO       reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+    CASO            reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+    VARIAVEL        reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+    ENTRADA         reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+    SAIDA           reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+    FIMBLOCO        reduce using rule 6 (statement -> CASO ABREPARENTESE expression FECHAPARENTESE INICIOBLOCO statements FIMBLOCO CASOCONTRARIO INICIOBLOCO statements FIMBLOCO .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PONTOVIRGULA in state 24 resolved as shift
+WARNING: shift/reduce conflict for PONTOVIRGULA in state 26 resolved as shift
+WARNING: shift/reduce conflict for PONTOVIRGULA in state 27 resolved as shift
+WARNING: shift/reduce conflict for PONTOVIRGULA in state 28 resolved as shift
+WARNING: shift/reduce conflict for SOMA in state 48 resolved as shift
+WARNING: shift/reduce conflict for SUB in state 48 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 48 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 48 resolved as shift
+WARNING: shift/reduce conflict for RESTO in state 48 resolved as shift
+WARNING: shift/reduce conflict for SOMA in state 49 resolved as shift
+WARNING: shift/reduce conflict for SUB in state 49 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 49 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 49 resolved as shift
+WARNING: shift/reduce conflict for RESTO in state 49 resolved as shift
+WARNING: shift/reduce conflict for SOMA in state 50 resolved as shift
+WARNING: shift/reduce conflict for SUB in state 50 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 50 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 50 resolved as shift
+WARNING: shift/reduce conflict for RESTO in state 50 resolved as shift
+WARNING: shift/reduce conflict for SOMA in state 51 resolved as shift
+WARNING: shift/reduce conflict for SUB in state 51 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 51 resolved as shift
+WARNING: shift/reduce conflict for RESTO in state 51 resolved as shift
+WARNING: shift/reduce conflict for SOMA in state 52 resolved as shift
+WARNING: shift/reduce conflict for SUB in state 52 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 52 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 52 resolved as shift
+WARNING: shift/reduce conflict for RESTO in state 52 resolved as shift
