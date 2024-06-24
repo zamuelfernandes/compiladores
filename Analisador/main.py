@@ -41,7 +41,13 @@ example3 = '''play
     write(sum);
 close'''
 
-# Função para testar um exemplo
+testeCont = '''int x;
+    x = 10;
+    if (x > 5) {
+        x = x + 1;
+    }'''
+
+# Função para testar um exemplo léxico
 def test_example(data):
     lexer.input(data)
 
@@ -51,25 +57,29 @@ def test_example(data):
             break
         print(f"Token: {tok.type}, Valor: {tok.value}, Linha: {tok.lineno}")
 
+# Função para formatar e imprimir o resultado de maneira legível
+def format_result(result, indent=0):
+    indent_str = '  ' * indent
+    if isinstance(result, tuple):
+        print(f"{indent_str}{result[0]}:")
+        for item in result[1:]:
+            format_result(item, indent + 1)
+    elif isinstance(result, list):
+        for item in result:
+            format_result(item, indent)
+    else:
+        print(f"{indent_str}{result}")
 
-# Teste do analisador léxico
+# Teste dos analisadores
 if __name__ == "__main__":
 
-    example = example3 #trocar aqui
+    #Definição de qual código testar
+    example = testeCont 
 
-    # print("Exemplo 1: Comandos de Entrada e Saída")
-    # test_example(example)
-    # print("\n")
-
-    # print("Exemplo 2: Comandos Condicionais")
-    # test_example(example)
-    # print("\n")
-
-    print("Exemplo 3: Comandos de Repetição")
+    print("- - - Testando Exemplo - - -\n")
     test_example(example)
     print("\n")
-
-    lexer.lineno = 0;
     
     result = parser.parse(example)
-    print("Análise concluída!")
+    format_result(result)
+    print("\nAnálise concluída!")

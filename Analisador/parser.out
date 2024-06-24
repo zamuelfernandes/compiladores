@@ -16,8 +16,8 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> program
-Rule 1     program -> PLAY declarativas estados CLOSE
+Rule 0     S' -> programa
+Rule 1     programa -> PLAY declarativas estados CLOSE
 Rule 2     declarativas -> declarativas declarativa
 Rule 3     declarativas -> vazio
 Rule 4     declarativa -> tipo VARIAVEL PONTOVIRGULA
@@ -111,7 +111,7 @@ estados              : 1 6 13 14 16
 expressao            : 12 13 16 18 20 21 22 23 24 25 26 27 28 29 37
 fator                : 30 31 32 33
 io_estado            : 11
-program              : 0
+programa             : 0
 repeticao_estado     : 10
 se_estado            : 9
 senao_estado         : 13
@@ -123,22 +123,22 @@ Parsing method: LALR
 
 state 0
 
-    (0) S' -> . program
-    (1) program -> . PLAY declarativas estados CLOSE
+    (0) S' -> . programa
+    (1) programa -> . PLAY declarativas estados CLOSE
 
     PLAY            shift and go to state 2
 
-    program                        shift and go to state 1
+    programa                       shift and go to state 1
 
 state 1
 
-    (0) S' -> program .
+    (0) S' -> programa .
 
 
 
 state 2
 
-    (1) program -> PLAY . declarativas estados CLOSE
+    (1) programa -> PLAY . declarativas estados CLOSE
     (2) declarativas -> . declarativas declarativa
     (3) declarativas -> . vazio
     (38) vazio -> .
@@ -156,7 +156,7 @@ state 2
 
 state 3
 
-    (1) program -> PLAY declarativas . estados CLOSE
+    (1) programa -> PLAY declarativas . estados CLOSE
     (2) declarativas -> declarativas . declarativa
     (6) estados -> . estados estado
     (7) estados -> . vazio
@@ -192,7 +192,7 @@ state 4
 
 state 5
 
-    (1) program -> PLAY declarativas estados . CLOSE
+    (1) programa -> PLAY declarativas estados . CLOSE
     (6) estados -> estados . estado
     (8) estado -> . assinalar_estado
     (9) estado -> . se_estado
@@ -259,9 +259,9 @@ state 9
 
 state 10
 
-    (1) program -> PLAY declarativas estados CLOSE .
+    (1) programa -> PLAY declarativas estados CLOSE .
 
-    $end            reduce using rule 1 (program -> PLAY declarativas estados CLOSE .)
+    $end            reduce using rule 1 (programa -> PLAY declarativas estados CLOSE .)
 
 
 state 11
