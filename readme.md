@@ -25,11 +25,11 @@ Este projeto implementa um analisador léxico e sintático para uma linguagem de
 
 1. Clone este repositório:
    ```sh
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/zamuelfernandes/compiladores.git
    ```
 2. Navegue até o diretório do projeto:
    ```sh
-   cd seu-repositorio
+   cd compiladores/Analisador
    ```
 3. Execute o analisador léxico e sintático com um dos exemplos fornecidos:
    ```sh
@@ -44,12 +44,9 @@ Este projeto implementa um analisador léxico e sintático para uma linguagem de
 
 ### 📄 Exemplos de Programas
 
-- **Entrada e Saída**: `examples/exampleIO.txt`
-- **Condicionais**: `examples/exampleCond.txt`
-- **Repetição**: `examples/exampleRepeat.txt`
-
-## 📜 Licença
-
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais informações.
+- **Entrada e Saída**: `exampleIO`
+- **Condicionais**: `exampleCond`
+- **Repetição**: `exampleRepeat`
+- **Erro**: `exampleErro`
 
 ---
