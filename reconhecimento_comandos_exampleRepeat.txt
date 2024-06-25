@@ -1,0 +1,45 @@
+Reconhecimento Léxico:
+Token: PLAY | Valor: 'play' | Linha: 1
+Token: TIPO_INTEIRO | Valor: 'int' | Linha: 2
+Token: VARIAVEL | Valor: 'i' | Linha: 2
+Token: PONTOVIRGULA | Valor: ';' | Linha: 2
+Token: TIPO_INTEIRO | Valor: 'int' | Linha: 3
+Token: VARIAVEL | Valor: 'sum' | Linha: 3
+Token: PONTOVIRGULA | Valor: ';' | Linha: 3
+Token: VARIAVEL | Valor: 'sum' | Linha: 4
+Token: ATRIBUICAO | Valor: '<-' | Linha: 4
+Token: INTEIRO | Valor: '0' | Linha: 4
+Token: PONTOVIRGULA | Valor: ';' | Linha: 4
+Token: VARIAVEL | Valor: 'i' | Linha: 5
+Token: ATRIBUICAO | Valor: '<-' | Linha: 5
+Token: INTEIRO | Valor: '1' | Linha: 5
+Token: PONTOVIRGULA | Valor: ';' | Linha: 5
+Token: REPETICAO | Valor: 'while' | Linha: 6
+Token: ABREPARENTESE | Valor: '(' | Linha: 6
+Token: VARIAVEL | Valor: 'i' | Linha: 6
+Token: MENORIGUAL | Valor: '<=' | Linha: 6
+Token: INTEIRO | Valor: '10' | Linha: 6
+Token: FECHAPARENTESE | Valor: ')' | Linha: 6
+Token: INICIOBLOCO | Valor: '{' | Linha: 6
+Token: VARIAVEL | Valor: 'sum' | Linha: 7
+Token: ATRIBUICAO | Valor: '<-' | Linha: 7
+Token: VARIAVEL | Valor: 'sum' | Linha: 7
+Token: SOMA | Valor: '+' | Linha: 7
+Token: VARIAVEL | Valor: 'i' | Linha: 7
+Token: PONTOVIRGULA | Valor: ';' | Linha: 7
+Token: VARIAVEL | Valor: 'i' | Linha: 8
+Token: ATRIBUICAO | Valor: '<-' | Linha: 8
+Token: VARIAVEL | Valor: 'i' | Linha: 8
+Token: SOMA | Valor: '+' | Linha: 8
+Token: INTEIRO | Valor: '1' | Linha: 8
+Token: PONTOVIRGULA | Valor: ';' | Linha: 8
+Token: FIMBLOCO | Valor: '}' | Linha: 9
+Token: SAIDA | Valor: 'write' | Linha: 10
+Token: ABREPARENTESE | Valor: '(' | Linha: 10
+Token: VARIAVEL | Valor: 'sum' | Linha: 10
+Token: FECHAPARENTESE | Valor: ')' | Linha: 10
+Token: PONTOVIRGULA | Valor: ';' | Linha: 10
+Token: CLOSE | Valor: 'close' | Linha: 11
+
+Reconhecimento Sintático:
+Análise sintática concluída sem erros.

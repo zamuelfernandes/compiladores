@@ -80,11 +80,11 @@ def gerar_reconhecimento_sintatico(data):
     return result
         
 # Fazer reconhecimento
-def gerar_arquivo_reconhecimento(data):
+def gerar_arquivo_reconhecimento(data, type):
     tokens_reconhecidos = gerar_reconhecimento_lexico(data)
     gerar_reconhecimento_sintatico(data)
 
-    with open("reconhecimento_comandos.txt", "w", encoding="utf-8") as f:
+    with open(f"reconhecimento_comandos_{type}.txt", "w", encoding="utf-8") as f:
         f.write("Reconhecimento Léxico:\n")
         for item in tokens_reconhecidos:
             f.write(f"{item}\n")
@@ -100,10 +100,10 @@ def gerar_arquivo_reconhecimento(data):
 if __name__ == "__main__":
 
     #Definição de qual código testar
-    example = exampleIO 
+    example = exampleErro 
 
     print("- - - Testando Exemplo - - -\n")
     
-    gerar_arquivo_reconhecimento(example)
+    gerar_arquivo_reconhecimento(example, 'exampleErro')
     
     print("\nAnálise Léxica e Sintática concluída!")

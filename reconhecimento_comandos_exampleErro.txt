@@ -1,0 +1,28 @@
+Reconhecimento Léxico:
+Token: PLAY | Valor: 'play' | Linha: 1
+Token: TIPO_INTEIRO | Valor: 'int' | Linha: 2
+Token: VARIAVEL | Valor: 'x' | Linha: 2
+Token: PONTOVIRGULA | Valor: ';' | Linha: 2
+Token: VARIAVEL | Valor: 'x' | Linha: 3
+Token: ILEGAL | Valor: '=' | Linha: 3
+Token: INTEIRO | Valor: '10' | Linha: 3
+Token: PONTOVIRGULA | Valor: ';' | Linha: 3
+Token: CASO | Valor: 'if' | Linha: 4
+Token: ABREPARENTESE | Valor: '(' | Linha: 4
+Token: VARIAVEL | Valor: 'x' | Linha: 4
+Token: MAIOR | Valor: '>' | Linha: 4
+Token: INTEIRO | Valor: '5' | Linha: 4
+Token: FECHAPARENTESE | Valor: ')' | Linha: 4
+Token: INICIOBLOCO | Valor: '{' | Linha: 4
+Token: VARIAVEL | Valor: 'x' | Linha: 5
+Token: ILEGAL | Valor: '=' | Linha: 5
+Token: VARIAVEL | Valor: 'x' | Linha: 5
+Token: SOMA | Valor: '+' | Linha: 5
+Token: INTEIRO | Valor: '1' | Linha: 5
+Token: PONTOVIRGULA | Valor: ';' | Linha: 5
+Token: FIMBLOCO | Valor: '}' | Linha: 6
+Token: CLOSE | Valor: 'close' | Linha: 7
+
+Reconhecimento Sintático:
+Erros sintáticos encontrados:
+Erro de sintaxe na linha 3: Token inesperado '=' | Tipo: ILEGAL
